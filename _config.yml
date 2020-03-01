@@ -1,9 +1,11 @@
 # main text of home
 name: Hiep Nguyen
-bio: A Man who travels the world eating noodles
+bio: A Man who can run. I want to travel around the world.
 
 # twitter summary info
-description: A blog about technology and stuff related
+description: Mobile developer
+
+repository: nthiep/nthiep.github.io
 
 # if it's an external image, update below for true
 # better with square images
@@ -54,7 +56,7 @@ email: hi@hiep.vn
 authors:
     johndoe:
         name: Hiep Nguyen
-        bio: A Man who travels the world eating noodles
+        bio: A Man who can run. I want to travel around the world.
         external-image: false
         picture: assets/images/profile.jpeg
         twitter: hieptux
