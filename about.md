@@ -2,14 +2,10 @@
 title: About
 layout: page
 ---
-![Profile Image]({% if site.external-image %}{{ site.picture }}{% else %}{{ site.url }}/{{ site.picture }}{% endif %})
+<lottie-player src="https://assets3.lottiefiles.com/packages/lf20_kkflmtur.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop autoplay></lottie-player>
 <center>
-<p>
-I like the sun, wind loves, like sky and like trees<br/>
-I love to hike its one, grass look like under a cloud<br/>
-I like things simple, because beauty lies in the eyes of dreamers<br/>
-I like quiet places, I do not like the noisy life.<br/>
-</p>
+<p>Hi guys, my name is Hiep (Nguyen Thanh).<br/>I'm working on Mobile application development in Vietnam.</p>
+<p>"Anything that can go wrong will go wrong!"<br/><b>Murphy</b></p>
 </center>
 
 <h2>Skills</h2>
@@ -19,6 +15,9 @@ I like quiet places, I do not like the noisy life.<br/>
 	<li>Git</li>
 	<li>NodeJS</li>
 	<li>Python</li>
+	<li>Flutter</li>
 	<li>Android Development</li>
 	<li>iOS Development</li>
 </ul>
+
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>

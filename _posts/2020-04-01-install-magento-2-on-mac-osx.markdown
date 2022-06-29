@@ -5,7 +5,7 @@ date: 2020-04-01 22:01
 tag:
     - magento
     - macos
-image: https://logo-logos.com/wp-content/uploads/2016/10/Magento_logo_logotype.png
+image: https://avatars.githubusercontent.com/u/168457?s=200&v=4
 headerImage: true
 projects: true
 description: "Install Magento 2 on MAC OSX"

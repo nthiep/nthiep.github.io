@@ -1,6 +1,6 @@
 # main text of home
 name: Hiep Nguyen
-bio: A Man who can run. I want to travel around the world.
+bio: Mobile Developer - Like the Sun, Love the Sky.
 
 # twitter summary info
 description: Mobile developer
@@ -10,7 +10,7 @@ repository: nthiep/nthiep.github.io
 # if it's an external image, update below for true
 # better with square images
 external-image: false
-picture: assets/images/profile.jpeg
+picture: assets/images/profile.jpg
 
 # If you want to include your resume, set to true
 # and specify source (external or local).
@@ -56,9 +56,9 @@ email: hi@hiep.vn
 authors:
     hiep:
         name: Hiep Nguyen
-        bio: A Man who can run. I want to travel around the world.
+        bio: Mobile Developer - Like the Sun, Love the Sky.
         external-image: false
-        picture: assets/images/profile.jpeg
+        picture: assets/images/profile.jpg
         twitter: hieptux
 
 # do you want a larger site? change the option below
