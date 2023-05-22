@@ -1,5 +1,5 @@
 ---
-title: "Ếch xào xả ớt"
+title: "Cooking: Ếch xào xả ớt"
 layout: post
 date: 2019-01-12 10:24
 image: /assets/images/ech-xao-xa-ot.jpg

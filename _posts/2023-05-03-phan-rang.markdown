@@ -1,0 +1,23 @@
+---
+title: "Travelling to Phan Rang"
+layout: post
+date: 2023-05-03 12:30
+image: https://live.staticflickr.com/65535/52892281318_39baf1f1db_k.jpg
+headerImage: true
+tag:
+- phanrang
+- ninhthuan
+category: blog
+author: hiep
+description: Phan Rang
+---
+
+<a data-flickr-embed="true" href="https://www.flickr.com/photos/nthiep/albums/72177720308218122" title="Phan Rang"><img src="https://live.staticflickr.com/65535/52891251692_38fb3cb8d4_c.jpg" width="800" height="600" alt="Phan Rang"/></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+
+Phan Rang is located on the coast of the South China Sea, about 300 kilometers northeast of Nha Trang. The city is known for its beautiful beaches, including Mui Dinh Beach, Binh Tiên Beach, and Vinh Hy Bay. Phan Rang is also home to a number of historical and cultural sites, including the Po Klong Garai Temple Complex, the Cham Museum, and the Bau Truc Pottery Village.
+
+
+## Coastal road of Ca Na
+Ca Na is a beautiful and historic commune with a lot to offer visitors. If you are looking for a place to relax and enjoy the sun and sand, or to learn about the culture and history of Vietnam, then Ca Na is the perfect destination for you.
+
+<iframe width="800" height="500" src="https://www.youtube.com/embed/-5eq9wAVSnA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

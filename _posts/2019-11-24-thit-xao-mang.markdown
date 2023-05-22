@@ -1,5 +1,5 @@
 ---
-title: "Thịt xào măng"
+title: "Cooking: Thịt xào măng"
 layout: post
 date: 2019-11-24 18:35
 image: /assets/images/thit-xao-mang.jpg
