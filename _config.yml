@@ -37,15 +37,15 @@ analytics-google: 'UA-111278851-1'
 disqus: false
 
 # if you don't have any of social below, comment the line
-facebook: hieptux
-twitter: hieptux
-# instagram: myinstagram
+facebook: hiepzg
+twitter: hiepzg
+instagram: hiepzg
 # pinterest: mypinterest
 linkedin: hiepvn
-# youtube: myyoutube
+youtube: "@hiep.nguyen"
 # spotify: myspotify
 github: nthiep
-# gitlab: mygitlab
+gitlab: hiep
 # lastfm: mylastfm
 # stackoverflow: 7044681/mystackoverflow
 # quora: userquora
@@ -61,7 +61,7 @@ authors:
         bio: Mobile Developer - Like the Sun, Love the Sky.
         external-image: false
         picture: assets/images/profile.jpg
-        twitter: hieptux
+        twitter: hiepzg
 
 # do you want a larger site? change the option below
 # options: [normal, large] | default: normal
