@@ -38,6 +38,8 @@ import {
   FAQItem,
 } from '../types';
 import { AppleLogo } from './AppleLogo';
+import venueHallImg from '../assets/images/venue_sanh_imperial.jpg';
+import coverImg from '../assets/images/cover.jpg';
 
 interface HunbeiH5SlideContainerProps {
   couple: CoupleInfo;
@@ -248,12 +250,11 @@ export const HunbeiH5SlideContainer: React.FC<HunbeiH5SlideContainerProps> = ({
         className="relative min-h-screen w-full flex flex-col justify-between items-center p-6 sm:p-12 overflow-hidden"
       >
         {/* Full-bleed Background Image with Elegant Vignette */}
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-0 overflow-hidden">
           <img
-            src={couple.venueImageUrl}
+            src={coverImg}
             alt="Wedding Cover"
-            className="w-full h-full object-cover brightness-[0.72] scale-105 transition-transform duration-1000"
-            referrerPolicy="no-referrer"
+            className="absolute left-0 -top-[18%] w-full h-[140%] object-cover brightness-[0.82] scale-110"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/35 to-black/85" />
           <div className="absolute inset-0 bg-radial from-transparent via-transparent to-black/60" />
@@ -704,22 +705,23 @@ export const HunbeiH5SlideContainer: React.FC<HunbeiH5SlideContainerProps> = ({
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-stretch">
             <div className="lg:col-span-7 relative rounded-3xl overflow-hidden min-h-[320px] sm:min-h-[420px] border border-white/20 shadow-2xl">
               <img
-                src={couple.venueImageUrl}
-                alt="Venue"
-                className="w-full h-full object-cover"
-                referrerPolicy="no-referrer"
+                src={venueHallImg}
+                alt="Sảnh IMPERIAL Gold Palace"
+                className="w-full h-full object-cover object-center"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6 sm:p-8">
-                <span className="text-xs uppercase tracking-[0.2em] font-cinzel font-semibold text-[#fae0a5] mb-1">
-                  {lang === 'vi' ? 'Sảnh IMPERIAL - Tầng 5A' : (lang === 'en' ? 'IMPERIAL Hall - Floor 5A' : '5A层 IMPERIAL 宴会厅')}
-                </span>
-                <h3 className={`${theme.titleFont} text-xl sm:text-3xl font-bold text-white mb-2`}>
-                  {lang === 'vi' ? 'Nhà hàng Gold Palace' : venueNameText}
-                </h3>
-                <p className="text-xs sm:text-sm text-white/90 flex items-start space-x-1.5">
-                  <MapPin className="w-4 h-4 text-[#ffd778] shrink-0 mt-0.5" />
-                  <span>{venueAddressText}</span>
-                </p>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-transparent flex flex-col justify-end p-6 sm:p-8">
+                <div className="drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)]">
+                  <span className="text-xs uppercase tracking-[0.2em] font-cinzel font-semibold text-[#fae0a5] mb-1 block">
+                    {lang === 'vi' ? 'Sảnh IMPERIAL - Tầng 5A' : (lang === 'en' ? 'IMPERIAL Hall - Floor 5A' : '5A层 IMPERIAL 宴会厅')}
+                  </span>
+                  <h3 className={`${theme.titleFont} text-xl sm:text-3xl font-bold text-white mb-2`}>
+                    {lang === 'vi' ? 'Nhà hàng Gold Palace' : venueNameText}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-white/95 flex items-start space-x-1.5">
+                    <MapPin className="w-4 h-4 text-[#ffd778] shrink-0 mt-0.5" />
+                    <span>{venueAddressText}</span>
+                  </p>
+                </div>
               </div>
             </div>
 

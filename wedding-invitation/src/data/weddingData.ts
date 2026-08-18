@@ -349,14 +349,14 @@ export const scheduleEvents: ScheduleEvent[] = [
 
 export const dressCodeColors: ColorSwatch[] = [
   {
-    name: 'Imperial Gold',
-    nameVi: 'Vàng Hoàng Kim',
-    nameZh: '帝王金',
-    hex: '#D4AF37',
-    textColor: '#1A1208',
-    description: 'Warm, luminous gold — festive and elegant',
-    descriptionVi: 'Tông vàng kim quý phái, lấp lánh ấm áp và sang trọng',
-    descriptionZh: '温暖闪耀的金色，华丽而喜庆',
+    name: 'Powder Blue',
+    nameVi: 'Xanh Dương Thanh Lịch',
+    nameZh: '浅蓝',
+    hex: '#A7C7E7',
+    textColor: '#1A2A3A',
+    description: 'Soft powder blue — fresh and elegant',
+    descriptionVi: 'Tông xanh dương nhạt dịu mắt, thanh lịch và tươi mát',
+    descriptionZh: '柔和浅蓝，清新雅致',
   },
   {
     name: 'Champagne Whisper',
@@ -389,14 +389,14 @@ export const dressCodeColors: ColorSwatch[] = [
     descriptionZh: '柔雾玫瑰色，温柔衬肤',
   },
   {
-    name: 'Tuscan Charcoal',
-    nameVi: 'Xám Than Lịch Lãm',
-    nameZh: '托斯卡纳炭灰',
-    hex: '#4A4E53',
+    name: 'Black',
+    nameVi: 'Đen Sang Trọng',
+    nameZh: '黑色',
+    hex: '#111111',
     textColor: '#FFFFFF',
-    description: 'Classic deep charcoal for tailored evening wear',
-    descriptionVi: 'Tông xám đậm chuẩn mực, âu phục sang trọng',
-    descriptionZh: '经典深炭灰，适合礼服西装',
+    description: 'Classic black for tailored evening wear',
+    descriptionVi: 'Tông đen cổ điển, âu phục sang trọng',
+    descriptionZh: '经典黑色，适合礼服西装',
   },
 ];
 

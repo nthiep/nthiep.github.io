@@ -20,6 +20,11 @@ for icon in favicon.svg favicon.png; do
   fi
 done
 
+if [ -d "$DIST_DIR/music" ]; then
+  rm -rf "$APP_DIR/music"
+  cp -R "$DIST_DIR/music" "$APP_DIR/music"
+fi
+
 {
   printf '%s\n' '---' 'permalink: /wedding-invitation/' 'layout: null' '---'
   cat "$DIST_DIR/index.html"

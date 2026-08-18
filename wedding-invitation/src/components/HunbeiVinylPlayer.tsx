@@ -154,7 +154,9 @@ export const HunbeiVinylPlayer: React.FC<HunbeiVinylPlayerProps> = ({ themeStyle
                       : 'text-[#ccc] hover:bg-[#2b2520] hover:text-white'
                   }`}
                 >
-                  <span className="truncate pr-2">{lang === 'zh' ? t.nameZh : t.name}</span>
+                  <span className="truncate pr-2">
+                    {lang === 'vi' ? t.nameVi : lang === 'zh' ? t.nameZh : t.name}
+                  </span>
                   {active && isPlaying && <Volume2 className="w-3 h-3 text-[#ffd778] shrink-0 animate-pulse" />}
                 </button>
               );
