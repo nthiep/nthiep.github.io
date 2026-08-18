@@ -128,7 +128,7 @@ export const HunbeiVinylPlayer: React.FC<HunbeiVinylPlayerProps> = ({ themeStyle
           <div className="flex items-center justify-between pb-2 border-b border-[#3d332a] mb-2">
             <div className="flex items-center space-x-1.5 text-xs text-[#d4af37] font-medium">
               <Music className="w-3.5 h-3.5" />
-              <span>{lang === 'vi' ? 'Nhạc Nền Tiệc Cưới' : lang === 'en' ? 'Wedding Soundtracks' : '婚礼专属背景音乐'}</span>
+              <span>{lang === 'vi' ? 'Nhạc Nền' : lang === 'en' ? 'Wedding Soundtracks' : '婚礼专属背景音乐'}</span>
             </div>
             <button
               onClick={() => setShowMenu(false)}

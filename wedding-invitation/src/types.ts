@@ -1,6 +1,5 @@
 export type HunbeiTheme = 'minimal_poster' | 'chinese_red' | 'champagne_gold' | 'forest_green' | 'midnight_star';
 export type LanguageMode = 'vi' | 'zh' | 'en' | 'bilingual';
-export type ViewMode = 'h5_slide' | 'scroll';
 
 export interface CoupleInfo {
   brideName: string;

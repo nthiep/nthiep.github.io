@@ -144,6 +144,7 @@ exclude:
   - scripts
   - wedding-invitation/node_modules
   - wedding-invitation/src
+  - wedding-invitation/public
   - wedding-invitation/dist
   - wedding-invitation/scripts
   - wedding-invitation/index.html

@@ -13,6 +13,13 @@ fi
 rm -rf "$APP_DIR/assets"
 cp -R "$DIST_DIR/assets" "$APP_DIR/assets"
 
+for icon in favicon.svg favicon.png; do
+  if [ -f "$DIST_DIR/$icon" ]; then
+    cp "$DIST_DIR/$icon" "$APP_DIR/$icon"
+    cp "$DIST_DIR/$icon" "$APP_DIR/assets/$icon"
+  fi
+done
+
 {
   printf '%s\n' '---' 'permalink: /wedding-invitation/' 'layout: null' '---'
   cat "$DIST_DIR/index.html"

@@ -7,8 +7,8 @@ import {
   ColorSwatch,
   RedPacketGift,
 } from '../types';
-import groomPortraitImg from '../assets/images/groom_nam0112_original_1786981882800.jpg';
-import bridePortraitImg from '../assets/images/bride_nam0638_original_1786981897833.jpg';
+import groomPortraitImg from '../assets/images/groom_nam0112.jpg';
+import bridePortraitImg from '../assets/images/bride_nam0638.jpg';
 
 export const initialCoupleInfo: CoupleInfo = {
   brideName: 'Ngo Thi Thuy Dung',
@@ -401,34 +401,6 @@ export const dressCodeColors: ColorSwatch[] = [
 ];
 
 export const galleryPhotos: GalleryPhoto[] = [
-  {
-    id: 'g-groom',
-    url: groomPortraitImg,
-    title: 'The Groom · Nguyen Thanh Hiep',
-    titleVi: 'Chú Rể · Nguyễn Thanh Hiệp',
-    titleZh: '新郎 · 阮清协',
-    caption: 'The groom in traditional ao dai.',
-    captionVi: 'Khoảnh khắc rạng rỡ của chú rể trong trang phục Áo Dài truyền thống.',
-    captionZh: '新郎身着传统奥黛的光彩时刻。',
-    category: 'engagement',
-    location: 'Wedding Day',
-    locationVi: 'Ngày Lễ Báo Hỷ',
-    locationZh: '报喜之日',
-  },
-  {
-    id: 'g-bride',
-    url: bridePortraitImg,
-    title: 'The Bride · Ngo Thi Thuy Dung',
-    titleVi: 'Cô Dâu · Ngô Thị Thùy Dung',
-    titleZh: '新娘 · 吴氏垂蓉',
-    caption: 'The bride’s gentle smile and wedding bouquet.',
-    captionVi: 'Nụ cười dịu dàng và bó hoa cưới rực rỡ của cô dâu.',
-    captionZh: '新娘温柔的笑容与婚礼花束。',
-    category: 'engagement',
-    location: 'Wedding Day',
-    locationVi: 'Ngày Lễ Báo Hỷ',
-    locationZh: '报喜之日',
-  },
   {
     id: 'g-1',
     url: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80',
