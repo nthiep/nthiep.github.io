@@ -1,0 +1,6 @@
+{
+  "name": "Wedding Invitation",
+  "description": "An elegant, responsive wedding invitation & Le Bao Hy web application for Nguyen Thanh Hiep & Ngo Thi Thuy Dung featuring full-width vertical scroll H5 slides, electronic wishing well red packets, real-time bullet-screen danmaku wishes, background music player, Google Maps navigation, and multi-language support.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

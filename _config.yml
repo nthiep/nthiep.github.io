@@ -129,4 +129,33 @@ compress_html:
         - development
         - stage
 
-exclude: ["travis.sh", "Rakefile", "README.md", "Gemfile", "Gemfile.lock", "FAQ.md", "node_modules", "vendor"]
+keep_files:
+  - wedding-invitation
+
+exclude:
+  - travis.sh
+  - Rakefile
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - FAQ.md
+  - node_modules
+  - vendor
+  - scripts
+  - wedding-invitation/node_modules
+  - wedding-invitation/src
+  - wedding-invitation/dist
+  - wedding-invitation/scripts
+  - wedding-invitation/index.html
+  - wedding-invitation/package.json
+  - wedding-invitation/package-lock.json
+  - wedding-invitation/bun.lock
+  - wedding-invitation/tsconfig.json
+  - wedding-invitation/vite.config.ts
+  - wedding-invitation/vite-env.d.ts
+  - wedding-invitation/metadata.json
+  - wedding-invitation/README.md
+  - wedding-invitation/.env
+  - wedding-invitation/.env.example
+  - wedding-invitation/.gitignore
+  - wedding-invitation/.nvmrc

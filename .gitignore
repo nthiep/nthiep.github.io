@@ -4,3 +4,7 @@ _site
 Gemfile.lock
 .bundle
 vendor/
+wedding-invitation/node_modules/
+wedding-invitation/dist/
+wedding-invitation/.env
+wedding-invitation/.env.local
