@@ -41,6 +41,7 @@ import { AppleLogo } from './AppleLogo';
 import venueHallImg from '../assets/images/venue_sanh_imperial.jpg';
 import coverImg from '../assets/images/cover.jpg';
 import { generateGoogleCalendarUrl, downloadIcsFile } from '../utils/calendar';
+import { useLockBodyScroll } from '../hooks/useLockBodyScroll';
 
 interface HunbeiH5SlideContainerProps {
   couple: CoupleInfo;
@@ -78,6 +79,8 @@ export const HunbeiH5SlideContainer: React.FC<HunbeiH5SlideContainerProps> = ({
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [couplePortrait, setCouplePortrait] = useState<'groom' | 'bride' | null>(null);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
+
+  useLockBodyScroll(lightboxIndex !== null || couplePortrait !== null);
 
   // Countdown timer calculation
   const [timeLeft, setTimeLeft] = useState<{ days: number; hours: number; minutes: number; seconds: number }>({
@@ -815,7 +818,7 @@ export const HunbeiH5SlideContainer: React.FC<HunbeiH5SlideContainerProps> = ({
                   <span>
                     <strong className="text-white">{lang === 'vi' ? 'Hỗ Trợ Đỗ Xe: ' : (lang === 'en' ? 'Parking: ' : '泊车：')}</strong>
                     {lang === 'vi'
-                      ? 'Khách sạn có dịch vụ hỗ trợ đỗ xe (xe máy và ô tô) dưới tầng hầm'
+                      ? 'Nhà hàng có dịch vụ hỗ trợ đỗ xe (xe máy và ô tô) dưới tầng hầm'
                       : (lang === 'en'
                         ? 'Complimentary basement parking for motorbikes and cars.'
                         : '地下车库提供摩托车及汽车泊车服务。')}
@@ -970,11 +973,8 @@ export const HunbeiH5SlideContainer: React.FC<HunbeiH5SlideContainerProps> = ({
       <section id="h5-dresscode" className="w-full py-14 sm:py-20 px-4 sm:px-6 border-t border-white/10">
         <div className="max-w-6xl mx-auto space-y-8">
           <div className="text-center max-w-2xl mx-auto">
-            <span className="text-xs sm:text-sm uppercase tracking-[0.3em] text-[#ffd778] font-cinzel font-semibold">
+            <h2 className={`${theme.titleFont} text-3xl sm:text-4xl font-bold ${theme.accentText}`}>
               {lang === 'vi' ? 'Gợi Ý Trang Phục · Dress Code' : (lang === 'en' ? 'Dress Code & Attire' : '宾客着装 · 配色建议')}
-            </span>
-            <h2 className={`${theme.titleFont} text-3xl sm:text-4xl font-bold ${theme.accentText} mt-1.5`}>
-              {lang === 'vi' ? 'Bảng Màu Trang Phục Gợi Ý' : (lang === 'en' ? 'Wedding Color Palette' : '共赴浪漫 · 盛装出席')}
             </h2>
             <div className="w-16 h-[1px] bg-[#ffd778]/40 mx-auto my-3" />
           </div>
@@ -1167,7 +1167,7 @@ export const HunbeiH5SlideContainer: React.FC<HunbeiH5SlideContainerProps> = ({
 
           <div>
             <h3 className="font-serif text-2xl sm:text-3xl text-[#f5ede4] tracking-wide font-normal">
-              {brideDisplayName} & {groomDisplayName}
+              {groomDisplayName} & {brideDisplayName}
             </h3>
             <p className="text-xs uppercase tracking-[0.2em] font-cinzel text-[#b49880] mt-1">
               {dateFormattedText} • {venueCityText}

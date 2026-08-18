@@ -1,6 +1,6 @@
 # main text of home
 name: Hiep Nguyen
-bio: Mobile Developer - Like the Sun, Love the Sky.
+bio: Software Development Engineer - Viet Nam
 
 # twitter summary info
 description: Mobile developer
@@ -58,7 +58,7 @@ email: contact@hiep.vn
 authors:
     hiep:
         name: Hiep Nguyen
-        bio: Mobile Developer - Like the Sun, Love the Sky.
+        bio: Software Development Engineer - Viet Nam
         external-image: false
         picture: assets/images/profile.jpg
         twitter: hiepzg

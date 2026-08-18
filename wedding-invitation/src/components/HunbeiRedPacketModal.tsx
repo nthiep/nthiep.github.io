@@ -42,30 +42,17 @@ export const HunbeiRedPacketModal: React.FC<HunbeiRedPacketModalProps> = ({
   const groomName = lang === 'vi' ? (couple.groomNameVi || couple.groomName) : lang === 'zh' ? (couple.groomNameZh || couple.groomName) : couple.groomName;
   const brideName = lang === 'vi' ? (couple.brideNameVi || couple.brideName) : lang === 'zh' ? (couple.brideNameZh || couple.brideName) : couple.brideName;
 
-  // Bank Account Profiles
-  const groomBank = {
-    owner: groomName,
-    ownerZh: couple.groomNameZh || '阮清协',
-    bankName: 'Techcombank',
-    bankShort: 'TCB',
-    accountNumber: '19038888999966',
-    accountDisplay: '1903 8888 9999 66',
-    qrUrl: 'https://api.vietqr.io/image/970407-19038888999966-compact2.jpg?accountName=NGUYEN%20THANH%20HIEP&addInfo=Mung%20Cuoi%20Hiep%20Dung',
-    memo: `Mung cuoi ${groomName.split(' ').pop()}`,
-  };
-
-  const brideBank = {
-    owner: brideName,
+  const giftBank = {
+    owner: lang === 'vi' ? 'Ngô Thị Thùy Dung' : lang === 'zh' ? (couple.brideNameZh || '吴氏垂容') : 'Ngo Thi Thuy Dung',
     ownerZh: couple.brideNameZh || '吴氏垂容',
-    bankName: 'Vietcombank',
-    bankShort: 'VCB',
-    accountNumber: '998877665544',
-    accountDisplay: '9988 7766 5544',
-    qrUrl: 'https://api.vietqr.io/image/970436-998877665544-compact2.jpg?accountName=NGO%20THI%20THUY%20DUNG&addInfo=Mung%20Cuoi%20Thuy%20Dung',
-    memo: `Mung cuoi ${brideName.split(' ').pop()}`,
+    bankName: 'MB Bank',
+    bankShort: 'MB',
+    accountNumber: '0765030005',
+    accountDisplay: '0765 0300 05',
+    qrUrl: 'https://img.vietqr.io/image/970422-0765030005-compact2.png?accountName=NGO%20THI%20THUY%20DUNG',
   };
 
-  const currentBank = activeTab === 'groom' ? groomBank : brideBank;
+  const currentBank = giftBank;
 
   return (
     <div

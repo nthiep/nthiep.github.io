@@ -30,8 +30,8 @@ export const HunbeiCallModal: React.FC<HunbeiCallModalProps> = ({
     setTimeout(() => setCopiedPerson(null), 2000);
   };
 
-  const groomDisplayName = lang === 'vi' ? couple.groomNameVi || couple.groomName : lang === 'zh' ? couple.groomNameZh || couple.groomName : couple.groomName;
-  const brideDisplayName = lang === 'vi' ? couple.brideNameVi || couple.brideName : lang === 'zh' ? couple.brideNameZh || couple.brideName : couple.brideName;
+  const groomDisplayName = 'Hiệp Nguyễn';
+  const brideDisplayName = 'Dung Thùy';
 
   const titleText = lang === 'vi' ? 'Liên Hệ Cô Dâu & Chú Rể' : lang === 'zh' ? '联系新人 · Facebook' : 'Contact the Couple';
   const groomLabel = lang === 'vi' ? 'Chú Rể' : lang === 'zh' ? '新郎' : 'The Groom';

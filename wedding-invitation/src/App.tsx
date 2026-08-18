@@ -15,6 +15,7 @@ import { HunbeiRedPacketModal } from './components/HunbeiRedPacketModal';
 import { HunbeiH5SlideContainer } from './components/HunbeiH5SlideContainer';
 import { HunbeiCallModal } from './components/HunbeiCallModal';
 import { HunbeiNavModal } from './components/HunbeiNavModal';
+import { useLockBodyScroll } from './hooks/useLockBodyScroll';
 
 export default function App() {
   const [couple] = useState<CoupleInfo>(initialCoupleInfo);
@@ -26,6 +27,8 @@ export default function App() {
   const [redPacketOpen, setRedPacketOpen] = useState(false);
   const [callModalOpen, setCallModalOpen] = useState(false);
   const [navModalOpen, setNavModalOpen] = useState(false);
+
+  useLockBodyScroll(envelopeOpen || redPacketOpen || callModalOpen || navModalOpen);
 
   return (
     <div className="min-h-screen relative font-sans selection:bg-[#f3c87a] selection:text-[#5e090b] bg-[#18231c] text-[#f0f7f0]">
