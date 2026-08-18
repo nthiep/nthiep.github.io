@@ -33,7 +33,7 @@ export const HunbeiNavModal: React.FC<HunbeiNavModalProps> = ({
 
   const encodedAddress = encodeURIComponent(`${couple.venueName}, ${couple.venueAddress}, ${couple.venueCity}`);
 
-  const titleText = lang === 'vi' ? 'Chỉ Đường Đến Địa Điểm Cưới' : lang === 'zh' ? '一键导航 · 前往婚礼酒店' : 'One-Click Navigation';
+  const titleText = lang === 'vi' ? 'Chỉ Đường Đến Nhà Hàng' : lang === 'zh' ? '一键导航 · 前往婚礼酒店' : 'One-Click Navigation';
   const chooseAppText = lang === 'vi' ? 'Chọn ứng dụng bản đồ dẫn đường:' : lang === 'zh' ? '选择地图导航应用：' : 'Open in Navigation App:';
   const copyBtnText = copied
     ? (lang === 'vi' ? 'Đã sao chép địa chỉ!' : lang === 'zh' ? '地址已复制到剪贴板' : 'Address Copied!')

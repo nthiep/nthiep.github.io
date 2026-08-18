@@ -39,6 +39,8 @@ import {
 } from '../types';
 import { AppleLogo } from './AppleLogo';
 import venueHallImg from '../assets/images/venue_sanh_imperial.jpg';
+import venueGoldPalaceImg from '../assets/images/venue_goldpalace.jpg';
+import venueDonKhachImg from '../assets/images/venue_don_khach.jpg';
 import coverImg from '../assets/images/cover.jpg';
 import { generateGoogleCalendarUrl, downloadIcsFile } from '../utils/calendar';
 import { useLockBodyScroll } from '../hooks/useLockBodyScroll';
@@ -79,6 +81,20 @@ export const HunbeiH5SlideContainer: React.FC<HunbeiH5SlideContainerProps> = ({
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [couplePortrait, setCouplePortrait] = useState<'groom' | 'bride' | null>(null);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
+  const [venueSlideIndex, setVenueSlideIndex] = useState(0);
+
+  const venueSlides = [
+    { src: venueHallImg, alt: 'Sảnh IMPERIAL Gold Palace' },
+    { src: venueGoldPalaceImg, alt: 'Nhà hàng Gold Palace' },
+    { src: venueDonKhachImg, alt: 'Khu vực đón khách Gold Palace' },
+  ];
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setVenueSlideIndex((prev) => (prev + 1) % venueSlides.length);
+    }, 3000);
+    return () => window.clearInterval(timer);
+  }, [venueSlides.length]);
 
   useLockBodyScroll(lightboxIndex !== null || couplePortrait !== null);
 
@@ -731,11 +747,16 @@ export const HunbeiH5SlideContainer: React.FC<HunbeiH5SlideContainerProps> = ({
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-stretch">
             <div className="lg:col-span-7 relative rounded-3xl overflow-hidden min-h-[320px] sm:min-h-[420px] border border-white/20 shadow-2xl">
-              <img
-                src={venueHallImg}
-                alt="Sảnh IMPERIAL Gold Palace"
-                className="w-full h-full object-cover object-center"
-              />
+              {venueSlides.map((slide, index) => (
+                <img
+                  key={slide.src}
+                  src={slide.src}
+                  alt={slide.alt}
+                  className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-700 ${
+                    index === venueSlideIndex ? 'opacity-100' : 'opacity-0'
+                  }`}
+                />
+              ))}
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-transparent flex flex-col justify-end p-6 sm:p-8">
                 <div className="drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)]">
                   <span className="text-xs uppercase tracking-[0.2em] font-cinzel font-semibold text-[#fae0a5] mb-1 block">
