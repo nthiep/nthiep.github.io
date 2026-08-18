@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { X, Heart, Calendar, MapPin, Sparkles, CheckCircle2, XCircle, ArrowLeft, Send, Users, User, Check, Edit3 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { CoupleInfo, LanguageMode, RSVPData } from '../types';
+import { submitRsvpToSheet } from '../utils/rsvpSheet';
 
 interface EnvelopeModalProps {
   isOpen: boolean;
@@ -30,6 +31,8 @@ export const EnvelopeModal: React.FC<EnvelopeModalProps> = ({
   });
 
   const [savedRSVP, setSavedRSVP] = useState<RSVPData | null>(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   useEffect(() => {
     const saved = localStorage.getItem('wedding_rsvp_submission');
@@ -75,9 +78,9 @@ export const EnvelopeModal: React.FC<EnvelopeModalProps> = ({
     }
   };
 
-  const handleRsvpSubmit = (e: React.FormEvent) => {
+  const handleRsvpSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.fullName.trim()) return;
+    if (!formData.fullName.trim() || submitting) return;
 
     const rsvpRecord: RSVPData = {
       id: savedRSVP?.id || `rsvp-${Date.now()}`,
@@ -89,19 +92,62 @@ export const EnvelopeModal: React.FC<EnvelopeModalProps> = ({
       dietaryRestrictions: '',
       songRequest: '',
       message: formData.message.trim(),
-      submittedAt: new Date().toLocaleDateString('vi-VN', {
+      submittedAt: new Date().toLocaleString('vi-VN', {
         day: '2-digit',
         month: '2-digit',
         year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
       }),
     };
 
-    localStorage.setItem('wedding_rsvp_submission', JSON.stringify(rsvpRecord));
-    setSavedRSVP(rsvpRecord);
-    setModalView('success');
+    setSubmitting(true);
+    setSubmitError(null);
 
-    if (formData.attending === 'yes') {
-      triggerConfetti();
+    try {
+      await submitRsvpToSheet({
+        id: rsvpRecord.id,
+        fullName: rsvpRecord.fullName,
+        attending: rsvpRecord.attending,
+        guestsCount: rsvpRecord.guestsCount,
+        message: rsvpRecord.message,
+        submittedAt: rsvpRecord.submittedAt,
+        lang,
+      });
+
+      localStorage.setItem('wedding_rsvp_submission', JSON.stringify(rsvpRecord));
+      setSavedRSVP(rsvpRecord);
+      setModalView('success');
+
+      if (formData.attending === 'yes') {
+        triggerConfetti();
+      }
+    } catch (err) {
+      console.error(err);
+      const message = err instanceof Error ? err.message : '';
+      const unconfigured = message === 'RSVP_WEBAPP_UNCONFIGURED';
+      const forbidden = message === 'RSVP_SHEET_HTTP_403';
+      setSubmitError(
+        unconfigured
+          ? (lang === 'vi'
+            ? 'Chưa cấu hình Google Sheet. Thêm VITE_RSVP_WEBAPP_URL sau khi Deploy Apps Script.'
+            : lang === 'zh'
+            ? '尚未配置 Google 表格，请先部署 Apps Script。'
+            : 'Google Sheet is not configured. Set VITE_RSVP_WEBAPP_URL after deploying the Apps Script.')
+          : forbidden
+          ? (lang === 'vi'
+            ? 'Web app Google đang khóa (403). Deploy lại: Execute as Me, Who has access = Bất kỳ ai (Anyone).'
+            : lang === 'zh'
+            ? 'Google 网页应用返回 403。请重新部署为 Anyone（任何人）。'
+            : 'Google web app returned 403. Redeploy with Execute as Me and Who has access = Anyone.')
+          : (lang === 'vi'
+            ? 'Không gửi được xác nhận. Quý khách vui lòng thử lại.'
+            : lang === 'zh'
+            ? '提交失败，请再试一次。'
+            : 'Could not submit your RSVP. Please try again.')
+      );
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -351,12 +397,23 @@ export const EnvelopeModal: React.FC<EnvelopeModalProps> = ({
                     />
                   </div>
 
+                  {submitError && (
+                    <p className="text-xs text-rose-700 bg-rose-50 border border-rose-200 rounded-xl px-3 py-2">
+                      {submitError}
+                    </p>
+                  )}
+
                   <button
                     type="submit"
-                    className="w-full py-3.5 rounded-xl bg-[#5c4636] hover:bg-[#433124] active:scale-98 text-white font-bold text-xs sm:text-sm tracking-wider transition shadow-md flex items-center justify-center space-x-2 cursor-pointer"
+                    disabled={submitting}
+                    className="w-full py-3.5 rounded-xl bg-[#5c4636] hover:bg-[#433124] active:scale-98 text-white font-bold text-xs sm:text-sm tracking-wider transition shadow-md flex items-center justify-center space-x-2 cursor-pointer disabled:opacity-60 disabled:cursor-wait"
                   >
-                    <Send className="w-4 h-4" />
-                    <span>{lang === 'vi' ? 'Gửi Xác Nhận Tham Dự' : lang === 'zh' ? '提交回执' : 'Submit RSVP'}</span>
+                    <Send className={`w-4 h-4 ${submitting ? 'animate-pulse' : ''}`} />
+                    <span>
+                      {submitting
+                        ? (lang === 'vi' ? 'Đang gửi...' : lang === 'zh' ? '提交中...' : 'Sending...')
+                        : (lang === 'vi' ? 'Gửi Xác Nhận Tham Dự' : lang === 'zh' ? '提交回执' : 'Submit RSVP')}
+                    </span>
                   </button>
                 </form>
               </motion.div>

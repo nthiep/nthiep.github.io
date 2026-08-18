@@ -9,6 +9,19 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 20
+
+    - name: Build wedding invitation
+      env:
+        VITE_RSVP_WEBAPP_URL: ${{ secrets.VITE_RSVP_WEBAPP_URL }}
+      run: |
+        cd wedding-invitation
+        npm install
+        npm run build
+
     - name: Build the site in the jekyll/builder container
       run: |
         docker run \
