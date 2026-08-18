@@ -40,6 +40,7 @@ import {
 import { AppleLogo } from './AppleLogo';
 import venueHallImg from '../assets/images/venue_sanh_imperial.jpg';
 import coverImg from '../assets/images/cover.jpg';
+import { generateGoogleCalendarUrl, downloadIcsFile } from '../utils/calendar';
 
 interface HunbeiH5SlideContainerProps {
   couple: CoupleInfo;
@@ -456,7 +457,7 @@ export const HunbeiH5SlideContainer: React.FC<HunbeiH5SlideContainerProps> = ({
               <div className="text-white/90">{venueNameText}</div>
             </div>
 
-            <div className="pt-2 max-w-md mx-auto">
+            <div className="pt-2 max-w-md mx-auto space-y-3">
               <button
                 onClick={onOpenEnvelope}
                 className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-[#ffd778] to-[#d4af37] text-[#331c00] text-xs sm:text-sm font-bold tracking-wider shadow-xl hover:brightness-110 active:scale-98 transition flex items-center justify-center space-x-2"
@@ -464,6 +465,29 @@ export const HunbeiH5SlideContainer: React.FC<HunbeiH5SlideContainerProps> = ({
                 <span>📜</span>
                 <span>{lang === 'vi' ? 'Bấm Để Mở Thiệp' : (lang === 'en' ? 'Open Golden Wax Seal Letter' : '展开火漆封蜡正式请函')}</span>
               </button>
+
+              <p className="text-xs sm:text-sm text-[#fae0a5] font-cinzel uppercase tracking-[0.2em] pt-2">
+                {lang === 'vi' ? 'Thêm Vào Lịch' : (lang === 'en' ? 'Add to Calendar' : '添加到日历')}
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <a
+                  href={generateGoogleCalendarUrl(couple)}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="w-full py-3 rounded-2xl bg-white/10 border border-[#ffd778]/50 text-[#fae0a5] text-xs sm:text-sm font-semibold tracking-wider hover:bg-white/15 active:scale-98 transition flex items-center justify-center space-x-2"
+                >
+                  <Calendar className="w-4 h-4" />
+                  <span>{lang === 'vi' ? 'Google Calendar' : (lang === 'en' ? 'Google Calendar' : '谷歌日历')}</span>
+                </a>
+                <button
+                  onClick={() => downloadIcsFile(couple)}
+                  className="w-full py-3 rounded-2xl bg-white/10 border border-[#ffd778]/50 text-[#fae0a5] text-xs sm:text-sm font-semibold tracking-wider hover:bg-white/15 active:scale-98 transition flex items-center justify-center space-x-2 cursor-pointer"
+                >
+                  <Calendar className="w-4 h-4" />
+                  <span>{lang === 'vi' ? 'Lịch Apple / Outlook' : (lang === 'en' ? 'Apple / Outlook (.ics)' : 'Apple / Outlook 日历')}</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
