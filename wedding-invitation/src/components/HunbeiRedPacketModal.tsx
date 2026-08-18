@@ -45,11 +45,11 @@ export const HunbeiRedPacketModal: React.FC<HunbeiRedPacketModalProps> = ({
   const giftBank = {
     owner: lang === 'vi' ? 'Ngô Thị Thùy Dung' : lang === 'zh' ? (couple.brideNameZh || '吴氏垂容') : 'Ngo Thi Thuy Dung',
     ownerZh: couple.brideNameZh || '吴氏垂容',
-    bankName: 'MB Bank',
-    bankShort: 'MB',
-    accountNumber: '0765030005',
-    accountDisplay: '0765 0300 05',
-    qrUrl: 'https://img.vietqr.io/image/970422-0765030005-compact2.png?accountName=NGO%20THI%20THUY%20DUNG',
+    bankName: 'Vietcombank',
+    bankShort: 'VCB',
+    accountNumber: '0371000438327',
+    accountDisplay: '0371 0004 38327',
+    qrUrl: 'https://img.vietqr.io/image/970436-0371000438327-compact2.png?accountName=NGO%20THI%20THUY%20DUNG',
   };
 
   const currentBank = giftBank;
