@@ -148,3 +148,43 @@
   background: #a5866c;
 }
 
+/* Cover 2D ken-burns (zoom + pan, no 3D) */
+.cover-ken {
+  transform-origin: center center;
+  will-change: opacity, transform;
+  transition: opacity 1.4s ease-in-out;
+}
+
+.cover-ken-a {
+  animation: cover-ken-a 20s ease-in-out infinite alternate;
+}
+
+.cover-ken-b {
+  animation: cover-ken-b 20s ease-in-out infinite alternate;
+}
+
+@keyframes cover-ken-a {
+  0% {
+    transform: scale(1) translate(0, 0);
+  }
+  100% {
+    transform: scale(1.04) translate(-0.6%, 0.5%);
+  }
+}
+
+@keyframes cover-ken-b {
+  0% {
+    transform: scale(1.14) translate(0, 0);
+  }
+  100% {
+    transform: scale(1.08) translate(1.8%, -1.2%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cover-ken-a,
+  .cover-ken-b {
+    animation: none;
+  }
+}
+

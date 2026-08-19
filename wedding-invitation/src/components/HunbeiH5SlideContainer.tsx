@@ -42,6 +42,7 @@ import venueHallImg from '../assets/images/venue_sanh_imperial.jpg';
 import venueGoldPalaceImg from '../assets/images/venue_goldpalace.jpg';
 import venueDonKhachImg from '../assets/images/venue_don_khach.jpg';
 import coverImg from '../assets/images/cover.jpg';
+import coverBwImg from '../assets/images/cover_bw.jpg';
 import { generateGoogleCalendarUrl, downloadIcsFile } from '../utils/calendar';
 import { useLockBodyScroll } from '../hooks/useLockBodyScroll';
 
@@ -80,14 +81,35 @@ export const HunbeiH5SlideContainer: React.FC<HunbeiH5SlideContainerProps> = ({
   const [copiedAddr, setCopiedAddr] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [couplePortrait, setCouplePortrait] = useState<'groom' | 'bride' | null>(null);
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
   const [venueSlideIndex, setVenueSlideIndex] = useState(0);
+  const [coverSlideIndex, setCoverSlideIndex] = useState(0);
+
+  const coverSlides = [
+    {
+      src: coverImg,
+      alt: 'Wedding Cover',
+      className: 'inset-0 h-full object-cover object-[center_40%] brightness-[0.85]',
+    },
+    {
+      src: coverBwImg,
+      alt: 'Wedding Cover close-up',
+      className: 'inset-0 h-full object-cover object-[center_36%] brightness-[0.85]',
+    },
+  ];
 
   const venueSlides = [
     { src: venueHallImg, alt: 'Sảnh IMPERIAL Gold Palace' },
     { src: venueGoldPalaceImg, alt: 'Nhà hàng Gold Palace' },
     { src: venueDonKhachImg, alt: 'Khu vực đón khách Gold Palace' },
   ];
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setCoverSlideIndex((prev) => (prev + 1) % coverSlides.length);
+    }, 10000);
+    return () => window.clearInterval(timer);
+  }, [coverSlides.length]);
 
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -271,11 +293,16 @@ export const HunbeiH5SlideContainer: React.FC<HunbeiH5SlideContainerProps> = ({
       >
         {/* Full-bleed Background Image with Elegant Vignette */}
         <div className="absolute inset-0 z-0 overflow-hidden">
-          <img
-            src={coverImg}
-            alt="Wedding Cover"
-            className="absolute left-0 -top-[18%] w-full h-[140%] object-cover brightness-[0.82] scale-110"
-          />
+          {coverSlides.map((slide, index) => (
+            <img
+              key={`${slide.alt}-${index}`}
+              src={slide.src}
+              alt={slide.alt}
+              className={`cover-ken absolute left-0 w-full ${slide.className} ${
+                index === 0 ? 'cover-ken-a' : 'cover-ken-b'
+              } ${index === coverSlideIndex ? 'opacity-100' : 'opacity-0'}`}
+            />
+          ))}
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/35 to-black/85" />
           <div className="absolute inset-0 bg-radial from-transparent via-transparent to-black/60" />
         </div>
