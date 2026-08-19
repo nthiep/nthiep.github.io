@@ -165,10 +165,10 @@
 
 @keyframes cover-ken-a {
   0% {
-    transform: scale(1) translate(0, 0);
+    transform: scale(1.08) translate(1.6%, 0);
   }
   100% {
-    transform: scale(1.04) translate(-0.6%, 0.5%);
+    transform: scale(1.16) translate(-2.2%, 1.4%);
   }
 }
 

@@ -199,9 +199,11 @@ export const HunbeiRedPacketModal: React.FC<HunbeiRedPacketModalProps> = ({
           </div>
         ) : (
           /* Thank You Screen */
-          <div className="flex-1 min-h-0 overflow-y-auto overscroll-contain space-y-4 text-center py-2 sm:py-4">
-            <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-b from-[#ffd778] to-[#d4af37] text-[#801215] mx-auto flex items-center justify-center text-3xl shadow-xl animate-bounce">
-              <Sparkles className="w-8 h-8 text-[#801215]" />
+          <div className="overflow-visible space-y-4 text-center pt-8 pb-4 sm:pt-10 sm:pb-6">
+            <div className="flex justify-center py-3">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-b from-[#ffd778] to-[#d4af37] text-[#801215] flex items-center justify-center text-3xl shadow-xl animate-bounce shrink-0">
+                <Sparkles className="w-8 h-8 text-[#801215]" />
+              </div>
             </div>
 
             <div>
