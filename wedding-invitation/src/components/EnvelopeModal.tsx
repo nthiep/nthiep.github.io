@@ -52,7 +52,49 @@ export const EnvelopeModal: React.FC<EnvelopeModalProps> = ({
     }
   }, [isOpen]);
 
+  const firePaperConfetti = () => {
+    const colors = ['#ffd778', '#d4af37', '#b81d22', '#f5ebd9', '#ffffff', '#c4a480', '#a3b18a'];
+    const paper = {
+      colors,
+      shapes: ['square', 'circle'] as ('square' | 'circle')[],
+      gravity: 0.85,
+      decay: 0.9,
+      ticks: 220,
+      scalar: 0.95,
+      disableForReducedMotion: true,
+    };
+
+    try {
+      confetti({
+        ...paper,
+        particleCount: 55,
+        spread: 75,
+        startVelocity: 38,
+        origin: { x: 0.5, y: 0.48 },
+      });
+      confetti({
+        ...paper,
+        particleCount: 28,
+        angle: 60,
+        spread: 55,
+        startVelocity: 42,
+        origin: { x: 0.22, y: 0.55 },
+      });
+      confetti({
+        ...paper,
+        particleCount: 28,
+        angle: 120,
+        spread: 55,
+        startVelocity: 42,
+        origin: { x: 0.78, y: 0.55 },
+      });
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   const handleOpenEnvelope = () => {
+    firePaperConfetti();
     setIsSealed(false);
     setModalView('letter');
   };

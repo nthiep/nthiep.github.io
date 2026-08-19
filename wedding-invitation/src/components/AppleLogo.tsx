@@ -4,9 +4,9 @@ interface AppleLogoProps {
   className?: string;
 }
 
-export const AppleLogo: React.FC<AppleLogoProps> = ({ className = 'h-[24px] w-auto shrink-0' }) => (
+export const AppleLogo: React.FC<AppleLogoProps> = ({ className = 'h-[18px] w-[18px] shrink-0' }) => (
   <svg
-    viewBox="0 0 17 48"
+    viewBox="0 11 17 24"
     xmlns="http://www.w3.org/2000/svg"
     className={className}
     fill="currentColor"

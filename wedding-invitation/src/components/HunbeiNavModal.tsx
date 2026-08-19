@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { MapPin, Navigation, Copy, Check, ExternalLink, Compass } from 'lucide-react';
+import { MapPin, Navigation, Copy, Check, ExternalLink } from 'lucide-react';
 import { CoupleInfo, LanguageMode } from '../types';
 import { AppleLogo } from './AppleLogo';
-import { GoogleLogo } from './GoogleLogo';
 
 interface HunbeiNavModalProps {
   isOpen: boolean;
@@ -95,7 +94,7 @@ export const HunbeiNavModal: React.FC<HunbeiNavModalProps> = ({
             className="w-full py-3 px-4 rounded-xl bg-[#2e241e] hover:bg-[#3d3026] border border-[#4a392d] flex items-center justify-between text-xs font-semibold text-white transition hover:border-[#ffd778]/40 shadow-sm"
           >
             <div className="flex items-center space-x-2.5">
-              <GoogleLogo className="h-[22px] w-[22px] shrink-0" />
+              <MapPin className="h-[18px] w-[18px] shrink-0 text-white" />
               <span className="text-sm">Google Maps</span>
             </div>
             <ExternalLink className="w-4 h-4 text-[#ffd778]" />
@@ -108,7 +107,7 @@ export const HunbeiNavModal: React.FC<HunbeiNavModalProps> = ({
             className="w-full py-3 px-4 rounded-xl bg-[#2e241e] hover:bg-[#3d3026] border border-[#4a392d] flex items-center justify-between text-xs font-semibold text-white transition hover:border-[#ffd778]/40 shadow-sm"
           >
             <div className="flex items-center space-x-2.5">
-              <AppleLogo className="h-[24px] w-auto shrink-0" />
+              <AppleLogo className="h-[18px] w-[18px] shrink-0" />
               <span className="text-sm">Apple Maps</span>
             </div>
             <ExternalLink className="w-4 h-4 text-[#ffd778]" />

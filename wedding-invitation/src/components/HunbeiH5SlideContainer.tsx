@@ -801,7 +801,7 @@ export const HunbeiH5SlideContainer: React.FC<HunbeiH5SlideContainerProps> = ({
                     rel="noopener noreferrer"
                     className="px-3 py-2.5 rounded-xl text-xs font-bold text-[#331c00] bg-gradient-to-r from-[#ffd778] to-[#d4af37] hover:brightness-110 transition shadow-md flex items-center justify-center space-x-1.5"
                   >
-                    <NavIcon className="w-3.5 h-3.5" />
+                    <MapPin className="h-[18px] w-[18px] shrink-0" />
                     <span>Google Maps</span>
                   </a>
                   <a
@@ -810,7 +810,7 @@ export const HunbeiH5SlideContainer: React.FC<HunbeiH5SlideContainerProps> = ({
                     rel="noopener noreferrer"
                     className="px-3 py-2.5 rounded-xl text-xs font-semibold text-[#fae0a5] bg-black/40 border border-[#ffd778]/50 hover:bg-black/60 transition flex items-center justify-center space-x-1.5"
                   >
-                    <AppleLogo className="h-[22px] w-auto shrink-0" />
+                    <AppleLogo className="h-[18px] w-[18px] shrink-0" />
                     <span>Apple Maps</span>
                   </a>
                 </div>
@@ -1113,6 +1113,18 @@ export const HunbeiH5SlideContainer: React.FC<HunbeiH5SlideContainerProps> = ({
               const isOpen = openFaqIndex === index;
               const question = lang === 'vi' ? faq.questionVi || faq.question : lang === 'zh' ? faq.questionZh || faq.question : faq.question;
               const answer = lang === 'vi' ? faq.answerVi || faq.answer : lang === 'zh' ? faq.answerZh || faq.answer : faq.answer;
+              const answerItems =
+                lang === 'vi'
+                  ? faq.answerItemsVi || faq.answerItems
+                  : lang === 'zh'
+                  ? faq.answerItemsZh || faq.answerItems
+                  : faq.answerItems;
+              const answerNote =
+                lang === 'vi'
+                  ? faq.answerNoteVi || faq.answerNote
+                  : lang === 'zh'
+                  ? faq.answerNoteZh || faq.answerNote
+                  : faq.answerNote;
               return (
                 <div
                   key={faq.id}
@@ -1137,6 +1149,14 @@ export const HunbeiH5SlideContainer: React.FC<HunbeiH5SlideContainerProps> = ({
                   {isOpen && (
                     <div className="px-5 sm:px-6 pb-5 pt-1 text-xs sm:text-sm text-white/80 leading-relaxed border-t border-white/10">
                       {answer}
+                      {answerItems && answerItems.length > 0 && (
+                        <ul className="mt-2.5 space-y-1.5 list-disc pl-4 marker:text-[#ffd778]">
+                          {answerItems.map((item) => (
+                            <li key={item}>{item}</li>
+                          ))}
+                        </ul>
+                      )}
+                      {answerNote && <p className="mt-2.5">{answerNote}</p>}
                     </div>
                   )}
                 </div>
@@ -1217,7 +1237,7 @@ export const HunbeiH5SlideContainer: React.FC<HunbeiH5SlideContainerProps> = ({
             </a>
             <span>•</span>
             <button type="button" onClick={onOpenEnvelope} className="hover:text-white transition cursor-pointer">
-              {lang === 'vi' ? 'MỞ PHONG BÌ' : lang === 'zh' ? '专属请柬' : 'Wax Seal Invite'}
+              {lang === 'vi' ? 'MỞ PHONG BÌ' : lang === 'zh' ? '专属请柬' : 'WAX SEAL INVITE'}
             </button>
           </div>
 
@@ -1245,10 +1265,10 @@ export const HunbeiH5SlideContainer: React.FC<HunbeiH5SlideContainerProps> = ({
           <div className="pt-6 border-t border-[#3d3229] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#8c7b6f]">
             <span>
               {lang === 'vi'
-                ? 'Thiệp cưới của Thùy Dung & Thanh Hiệp'
+                ? '© 2026 Thiệp cưới của Thanh Hiệp & Thùy Dung'
                 : lang === 'zh'
-                ? '垂蓉与清协的婚礼请柬'
-                : `Made with love for ${brideDisplayName} & ${groomDisplayName}'s Wedding`}
+                ? '© 2026 清协与垂蓉的婚礼请柬'
+                : '© 2026 Made with love for Thanh Hiep & Thuy Dung\'s Wedding'}
             </span>
 
             <div className="flex items-center space-x-4">

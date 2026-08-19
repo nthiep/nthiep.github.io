@@ -145,6 +145,12 @@ export interface FAQItem {
   answer: string;
   answerZh?: string;
   answerVi?: string;
+  answerItems?: string[];
+  answerItemsZh?: string[];
+  answerItemsVi?: string[];
+  answerNote?: string;
+  answerNoteZh?: string;
+  answerNoteVi?: string;
 }
 
 export interface ColorSwatch {

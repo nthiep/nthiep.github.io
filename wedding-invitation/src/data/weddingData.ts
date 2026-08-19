@@ -540,6 +540,30 @@ export const galleryPhotos: GalleryPhoto[] = [
 
 export const faqList: FAQItem[] = [
   {
+    id: 'faq-5',
+    question: 'How do I confirm my attendance (RSVP)?',
+    questionZh: '如何确认出席？',
+    questionVi: 'Làm sao để xác nhận tham dự?',
+    answer: 'Tap Open Invite at the bottom of the page, then follow the steps in the personal invitation.',
+    answerZh: '点击页面底部的“专属请柬”，再按请柬内的步骤提交出席回执。',
+    answerVi: 'Quý khách làm theo các bước sau:',
+    answerItems: [
+      'Tap Open Invite at the bottom of the page',
+      'Break the wax seal to open the letter',
+      'Send your RSVP inside the invitation',
+    ],
+    answerItemsZh: [
+      '点击页面底部的“专属请柬”',
+      '拆开火漆印信打开请柬',
+      '在请柬内提交出席回执',
+    ],
+    answerItemsVi: [
+      'Bấm Mở Thiệp ở thanh dưới cùng để mở Thiệp Mời Riêng',
+      'Bấm con dấu để mở thiệp',
+      'Gửi xác nhận tham dự trong thiệp',
+    ],
+  },
+  {
     id: 'faq-2',
     question: 'What time should I arrive at the venue?',
     questionZh: '建议几点到达现场？',
@@ -558,13 +582,40 @@ export const faqList: FAQItem[] = [
     answerVi: 'Có! Nhà hàng có dịch vụ hỗ trợ đỗ xe (xe máy và ô tô) dưới tầng hầm.',
   },
   {
-    id: 'faq-4',
-    question: 'How do I contact the bride or groom on the day?',
-    questionZh: '婚礼当天如何联系新人或婚礼总控？',
-    questionVi: 'Làm thế nào để liên hệ cô dâu, chú rể trong ngày cưới?',
-    answer: 'You can reach the groom or bride on Facebook from this invitation.',
-    answerZh: '可直接点击本请帖中的“一键拨号”联系新人。',
-    answerVi: 'Quý khách có thể liên hệ cho Chú Rể hoặc Cô Dâu bằng facebook.',
+    id: 'faq-6',
+    question: 'What time does the celebration end?',
+    questionZh: '喜宴大约何时结束？',
+    questionVi: 'Tiệc kết thúc khoảng mấy giờ?',
+    answer: 'The evening is scheduled to wrap up around 21:00–21:30, after thank-you remarks and farewell photos with the couple.',
+    answerZh: '晚宴预计于 21:00–21:30 结束（答谢致辞并与新人合影留念之后）。',
+    answerVi: 'Tiệc dự kiến kết thúc khoảng 21:00–21:30, sau phần cảm ơn và chụp ảnh lưu niệm cùng cô dâu chú rể.',
+  },
+  {
+    id: 'faq-7',
+    question: 'Are there hotels nearby for overnight guests?',
+    questionZh: '附近有推荐酒店吗？',
+    questionVi: 'Khách ở xa có khách sạn gần nhà hàng không?',
+    answer: 'Hotel suggestions near the venue:',
+    answerZh: '附近酒店推荐：',
+    answerVi: 'Có! Gợi ý khách sạn gần nhà hàng:',
+    answerItems: [
+      'Vinpearl Landmark 81, 720A Dien Bien Phu, 17 min',
+      'Novotel Saigon Centre, 167 Hai Ba Trung, 18 min',
+      'La Vela Saigon Hotel, 280 Nam Ky Khoi Nghia, 19 min',
+    ],
+    answerItemsZh: [
+      'Vinpearl Landmark 81，奠边府街720A号，17分钟',
+      'Novotel Saigon Centre，海婆征街167号，18分钟',
+      'La Vela Saigon Hotel，南圻起义街280号，19分钟',
+    ],
+    answerItemsVi: [
+      'Vinpearl Landmark 81, 720A Điện Biên Phủ, 17 phút',
+      'Novotel Saigon Centre, 167 Hải Bà Trưng, 18 phút',
+      'La Vela Saigon Hotel, 280 Nam Kỳ Khởi Nghĩa, 19 phút',
+    ],
+    answerNote: 'Grab or taxi is the easiest way after the party.',
+    answerNoteZh: '散场后打车最方便。',
+    answerNoteVi: 'Sau tiệc đi Grab/taxi là thuận tiện nhất.',
   },
 ];
 
