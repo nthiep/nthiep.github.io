@@ -56,11 +56,11 @@ export const HunbeiRedPacketModal: React.FC<HunbeiRedPacketModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto"
+      className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 pb-[max(0.75rem,env(safe-area-inset-bottom))]"
       onClick={onClose}
     >
       <div
-        className="w-full max-w-md bg-gradient-to-b from-[#b81d22] via-[#9e161a] to-[#780f12] text-white rounded-3xl p-6 sm:p-7 shadow-2xl border-2 border-[#f5d78e] relative overflow-hidden animate-in fade-in zoom-in-95 duration-200"
+        className="w-full max-w-md max-h-[min(94dvh,calc(100dvh-1.5rem))] bg-gradient-to-b from-[#b81d22] via-[#9e161a] to-[#780f12] text-white rounded-3xl p-5 sm:p-7 shadow-2xl border-2 border-[#f5d78e] relative overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200 my-auto"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Decorative Motifs */}
@@ -70,19 +70,19 @@ export const HunbeiRedPacketModal: React.FC<HunbeiRedPacketModalProps> = ({
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-[#fae0a5] hover:text-white bg-black/25 w-8 h-8 rounded-full flex items-center justify-center transition cursor-pointer"
+          className="absolute top-3 right-3 sm:top-4 sm:right-4 text-[#fae0a5] hover:text-white bg-black/25 w-8 h-8 rounded-full flex items-center justify-center transition cursor-pointer z-10"
         >
           ✕
         </button>
 
         {!showThankYou ? (
-          <div className="space-y-4 text-center">
+          <div className="flex-1 min-h-0 overflow-y-auto overscroll-contain space-y-3 sm:space-y-4 text-center pr-0.5">
             {/* Header */}
             <div className="pt-1">
-              <div className="w-12 h-12 mx-auto rounded-full bg-gradient-to-b from-[#ffd778] to-[#d4af37] text-[#851215] flex items-center justify-center text-xl font-bold shadow-lg border border-[#fff2b2] mb-2">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 mx-auto rounded-full bg-gradient-to-b from-[#ffd778] to-[#d4af37] text-[#851215] flex items-center justify-center text-lg sm:text-xl font-bold shadow-lg border border-[#fff2b2] mb-1.5 sm:mb-2">
                 囍
               </div>
-              <h3 className="font-chinese text-2xl font-bold text-[#fae0a5] tracking-wider">
+              <h3 className="font-chinese text-xl sm:text-2xl font-bold text-[#fae0a5] tracking-wider">
                 {lang === 'vi' ? 'Mừng Cưới Online' : (lang === 'en' ? 'Wedding Cash Gift' : '电子喜礼 · 扫码随礼')}
               </h3>
               <p className="text-xs text-[#fedcb0] mt-0.5 font-serif">
@@ -117,8 +117,8 @@ export const HunbeiRedPacketModal: React.FC<HunbeiRedPacketModalProps> = ({
             </div>
 
             {/* QR Code Card Display */}
-            <div className="bg-white p-4 rounded-2xl max-w-[260px] mx-auto shadow-2xl text-slate-800 space-y-2 border-2 border-[#f5d78e]">
-              <div className="relative rounded-xl overflow-hidden bg-white border border-slate-200 aspect-square flex items-center justify-center p-1">
+            <div className="bg-white p-3 sm:p-4 rounded-2xl w-[min(228px,64vw)] sm:w-[248px] mx-auto shadow-2xl text-slate-800 space-y-2 border-2 border-[#f5d78e]">
+              <div className="relative rounded-xl overflow-hidden bg-white border border-slate-200 aspect-square flex items-center justify-center p-0.5 sm:p-1">
                 <img
                   src={currentBank.qrUrl}
                   alt={`QR Mừng Cưới - ${currentBank.owner}`}
@@ -130,17 +130,17 @@ export const HunbeiRedPacketModal: React.FC<HunbeiRedPacketModalProps> = ({
                 />
               </div>
 
-              <div className="text-[11px] font-semibold text-slate-700 flex items-center justify-center space-x-1 pt-0.5">
-                <QrCode className="w-3.5 h-3.5 text-[#961c1e]" />
-                <span>{lang === 'vi' ? `Quét mã QR chuyển khoản ${currentBank.bankName}` : lang === 'en' ? `Scan QR to transfer via ${currentBank.bankName}` : `扫码转账 / ${currentBank.bankName}`}</span>
+              <div className="text-[10px] sm:text-[11px] font-semibold text-slate-700 flex items-center justify-center space-x-1">
+                <QrCode className="w-3.5 h-3.5 text-[#961c1e] shrink-0" />
+                <span>{lang === 'vi' ? `Quét mã QR ${currentBank.bankName}` : lang === 'en' ? `Scan QR via ${currentBank.bankName}` : `扫码转账 / ${currentBank.bankName}`}</span>
               </div>
             </div>
 
             {/* Bank Info Card with 1-Click Copy */}
-            <div className="bg-[#6b0d10]/95 p-3.5 rounded-2xl text-left text-xs space-y-2 border border-[#d48c48]/50 shadow-inner">
-              <div className="flex items-center justify-between text-[11px]">
-                <span className="text-[#fce4b8]">{lang === 'vi' ? 'Chủ tài khoản:' : lang === 'en' ? 'Account name:' : '开户姓名:'}</span>
-                <span className="font-semibold text-white tracking-wide">{currentBank.owner}</span>
+            <div className="bg-[#6b0d10]/95 p-3 sm:p-3.5 rounded-2xl text-left text-xs space-y-2 border border-[#d48c48]/50 shadow-inner">
+              <div className="flex items-center justify-between gap-2 text-[11px]">
+                <span className="text-[#fce4b8] shrink-0">{lang === 'vi' ? 'Chủ tài khoản:' : lang === 'en' ? 'Account name:' : '开户姓名:'}</span>
+                <span className="font-semibold text-white tracking-wide text-right">{currentBank.owner}</span>
               </div>
 
               <div className="flex items-center justify-between text-[11px]">
@@ -148,9 +148,9 @@ export const HunbeiRedPacketModal: React.FC<HunbeiRedPacketModalProps> = ({
                 <span className="font-semibold text-[#ffd778]">{currentBank.bankName}</span>
               </div>
 
-              <div className="flex items-center justify-between text-[11px] pt-1 border-t border-white/10">
-                <span className="text-[#fce4b8]">{lang === 'vi' ? 'Số tài khoản:' : lang === 'en' ? 'Account number:' : '银行账号:'}</span>
-                <div className="flex items-center space-x-1.5">
+              <div className="flex items-center justify-between gap-2 text-[11px] pt-1 border-t border-white/10">
+                <span className="text-[#fce4b8] shrink-0">{lang === 'vi' ? 'Số tài khoản:' : lang === 'en' ? 'Account number:' : '银行账号:'}</span>
+                <div className="flex items-center space-x-1.5 min-w-0">
                   <span className="text-white font-mono font-bold tracking-wider">{currentBank.accountDisplay}</span>
                   <button
                     onClick={() => handleCopy(currentBank.accountNumber, 'account')}
@@ -199,13 +199,13 @@ export const HunbeiRedPacketModal: React.FC<HunbeiRedPacketModalProps> = ({
           </div>
         ) : (
           /* Thank You Screen */
-          <div className="space-y-4 text-center py-4">
-            <div className="w-16 h-16 rounded-full bg-gradient-to-b from-[#ffd778] to-[#d4af37] text-[#801215] mx-auto flex items-center justify-center text-3xl shadow-xl animate-bounce">
+          <div className="flex-1 min-h-0 overflow-y-auto overscroll-contain space-y-4 text-center py-2 sm:py-4">
+            <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-b from-[#ffd778] to-[#d4af37] text-[#801215] mx-auto flex items-center justify-center text-3xl shadow-xl animate-bounce">
               <Sparkles className="w-8 h-8 text-[#801215]" />
             </div>
 
             <div>
-              <h3 className="font-chinese text-2xl font-bold text-[#fae0a5]">
+              <h3 className="font-chinese text-xl sm:text-2xl font-bold text-[#fae0a5]">
                 {lang === 'vi' ? 'Cảm Ơn Tấm Lòng Của Quý Khách!' : (lang === 'en' ? 'Thank You So Much!' : '新人由衷致谢！')}
               </h3>
               <p className="text-xs text-[#fedcb0] mt-2 max-w-xs mx-auto leading-relaxed">
