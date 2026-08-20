@@ -309,7 +309,7 @@ export const HunbeiH5SlideContainer: React.FC<HunbeiH5SlideContainerProps> = ({
       {/* ================= 1. FULL-WIDTH HERO COVER SECTION ================= */}
       <section
         id="h5-cover"
-        className="relative min-h-dvh w-full flex flex-col justify-between items-center px-6 pt-6 pb-[calc(5.75rem+env(safe-area-inset-bottom))] sm:p-12 overflow-hidden"
+        className="relative min-h-dvh w-full flex flex-col justify-between items-center px-6 pt-6 pb-[calc(4.15rem+env(safe-area-inset-bottom))] sm:px-12 sm:pt-12 sm:pb-[calc(4.35rem+env(safe-area-inset-bottom))] overflow-hidden"
       >
         {/* Full-bleed Background Image with Elegant Vignette */}
         <div className="absolute inset-0 z-0 overflow-hidden">
@@ -377,7 +377,7 @@ export const HunbeiH5SlideContainer: React.FC<HunbeiH5SlideContainerProps> = ({
             </div>
 
             {/* Bottom Countdown & Scroll Down Prompt */}
-            <div id="h5-cover-countdown" className="relative z-10 text-center space-y-3 sm:space-y-4 pb-2 sm:pb-4 max-w-md mx-auto w-full">
+            <div id="h5-cover-countdown" className="relative z-10 text-center space-y-3 sm:space-y-4 pb-0 max-w-md mx-auto w-full">
               <div className="grid grid-cols-4 gap-2 sm:gap-3 text-center">
                 <div className="bg-black/60 backdrop-blur-md rounded-xl p-2 sm:p-3 border border-white/20">
                   <div className="text-base sm:text-xl font-bold text-white">{timeLeft.days}</div>
@@ -446,7 +446,7 @@ export const HunbeiH5SlideContainer: React.FC<HunbeiH5SlideContainerProps> = ({
             </div>
 
             {/* Bottom Countdown & Scroll Down Prompt */}
-            <div id="h5-cover-countdown" className="relative z-10 text-center space-y-3 sm:space-y-4 pb-2 sm:pb-4 max-w-md mx-auto w-full">
+            <div id="h5-cover-countdown" className="relative z-10 text-center space-y-3 sm:space-y-4 pb-0 max-w-md mx-auto w-full">
               <div className="grid grid-cols-4 gap-2 sm:gap-3 text-center">
                 <div className="bg-black/60 backdrop-blur-md rounded-xl p-2 sm:p-3 border border-white/20">
                   <div className="text-lg sm:text-2xl font-bold text-[#ffd778]">{timeLeft.days}</div>
