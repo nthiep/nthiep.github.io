@@ -27,7 +27,20 @@ fi
 
 {
   printf '%s\n' '---' 'permalink: /wedding-invitation/' 'layout: null' '---'
-  cat "$DIST_DIR/index.html"
+  python3 - "$DIST_DIR/index.html" <<'PY'
+from pathlib import Path
+import sys
+
+html = Path(sys.argv[1]).read_text()
+inject = """    {% if site.analytics-google %}
+        {% include analytics-google.html %}
+    {% endif %}
+"""
+needle = "<head>"
+if needle not in html:
+    raise SystemExit("Could not find <head> in wedding dist/index.html")
+print(html.replace(needle, needle + "\n" + inject, 1), end="")
+PY
 } > "$ROOT_DIR/wedding-invitation.html"
 
 if [ -d "$ROOT_DIR/_site" ]; then

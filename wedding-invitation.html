@@ -6,6 +6,9 @@ layout: null
 <html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
+    {% if site.analytics-google %}
+        {% include analytics-google.html %}
+    {% endif %}
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Wedding Invitation | Hiep & Dung</title>
     <meta name="description" content="Wedding Invitation - Thanh Hiep & Thuy Dung" />
