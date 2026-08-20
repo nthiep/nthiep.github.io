@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Music, Play, Pause, SkipForward, Volume2, VolumeX, Sparkles } from 'lucide-react';
+import { Music, Play, Pause, SkipForward, Volume2, Sparkles } from 'lucide-react';
 import { audioEngine, AudioTrack } from '../utils/sound';
 import { LanguageMode } from '../types';
+import { MusicBubbleFx } from './MusicBubbleFx';
 
 interface HunbeiVinylPlayerProps {
   themeStyle?: string;
@@ -71,7 +72,9 @@ export const HunbeiVinylPlayer: React.FC<HunbeiVinylPlayerProps> = ({ themeStyle
   const style = getThemeAccents();
 
   return (
-    <div className="fixed top-4 right-4 z-50 flex items-center">
+    <>
+      <MusicBubbleFx active={isPlaying} />
+      <div className="fixed top-4 right-4 z-50 flex items-center">
       {/* Floating Animated Musical Notes when Playing */}
       {isPlaying && (
         <div className="relative pointer-events-none mr-1 select-none">
@@ -183,5 +186,6 @@ export const HunbeiVinylPlayer: React.FC<HunbeiVinylPlayerProps> = ({ themeStyle
         </div>
       )}
     </div>
+    </>
   );
 };

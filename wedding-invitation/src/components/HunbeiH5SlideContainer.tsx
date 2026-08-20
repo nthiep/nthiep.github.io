@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import {
   Heart,
   Calendar,
@@ -84,12 +84,14 @@ export const HunbeiH5SlideContainer: React.FC<HunbeiH5SlideContainerProps> = ({
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
   const [venueSlideIndex, setVenueSlideIndex] = useState(0);
   const [coverSlideIndex, setCoverSlideIndex] = useState(0);
+  const langSwitchRef = useRef<HTMLDivElement>(null);
+  const langSwitchTopRef = useRef<number | null>(null);
 
   const coverSlides = [
     {
       src: coverImg,
       alt: 'Wedding Cover',
-      className: 'inset-0 h-full object-cover object-[center_40%] brightness-[0.85]',
+      className: 'inset-0 h-full object-cover object-[center_30%] brightness-[0.85]',
     },
     {
       src: coverBwImg,
@@ -119,6 +121,24 @@ export const HunbeiH5SlideContainer: React.FC<HunbeiH5SlideContainerProps> = ({
   }, [venueSlides.length]);
 
   useLockBodyScroll(lightboxIndex !== null || couplePortrait !== null);
+
+  const handleChangeLang = (next: LanguageMode) => {
+    if (next === lang) return;
+    langSwitchTopRef.current = langSwitchRef.current?.getBoundingClientRect().top ?? null;
+    onChangeLang(next);
+  };
+
+  useLayoutEffect(() => {
+    const prevTop = langSwitchTopRef.current;
+    if (prevTop == null) return;
+    langSwitchTopRef.current = null;
+    const nextTop = langSwitchRef.current?.getBoundingClientRect().top;
+    if (nextTop == null) return;
+    const delta = nextTop - prevTop;
+    if (Math.abs(delta) >= 1) {
+      window.scrollBy(0, delta);
+    }
+  }, [lang]);
 
   // Countdown timer calculation
   const [timeLeft, setTimeLeft] = useState<{ days: number; hours: number; minutes: number; seconds: number }>({
@@ -285,11 +305,11 @@ export const HunbeiH5SlideContainer: React.FC<HunbeiH5SlideContainerProps> = ({
   const brideLabel = lang === 'vi' ? 'Cô Dâu' : lang === 'en' ? 'Bride' : '新娘';
 
   return (
-    <div className={`relative w-full min-h-screen ${theme.bg} text-white selection:bg-[#ffd778] selection:text-[#331c00]`}>
+    <div className={`relative w-full min-h-dvh ${theme.bg} text-white selection:bg-[#ffd778] selection:text-[#331c00]`}>
       {/* ================= 1. FULL-WIDTH HERO COVER SECTION ================= */}
       <section
         id="h5-cover"
-        className="relative min-h-screen w-full flex flex-col justify-between items-center p-6 sm:p-12 overflow-hidden"
+        className="relative min-h-dvh w-full flex flex-col justify-between items-center px-6 pt-6 pb-[calc(5.75rem+env(safe-area-inset-bottom))] sm:p-12 overflow-hidden"
       >
         {/* Full-bleed Background Image with Elegant Vignette */}
         <div className="absolute inset-0 z-0 overflow-hidden">
@@ -357,7 +377,7 @@ export const HunbeiH5SlideContainer: React.FC<HunbeiH5SlideContainerProps> = ({
             </div>
 
             {/* Bottom Countdown & Scroll Down Prompt */}
-            <div className="relative z-10 text-center space-y-4 pb-12 sm:pb-16 max-w-md mx-auto w-full">
+            <div id="h5-cover-countdown" className="relative z-10 text-center space-y-3 sm:space-y-4 pb-2 sm:pb-4 max-w-md mx-auto w-full">
               <div className="grid grid-cols-4 gap-2 sm:gap-3 text-center">
                 <div className="bg-black/60 backdrop-blur-md rounded-xl p-2 sm:p-3 border border-white/20">
                   <div className="text-base sm:text-xl font-bold text-white">{timeLeft.days}</div>
@@ -379,9 +399,9 @@ export const HunbeiH5SlideContainer: React.FC<HunbeiH5SlideContainerProps> = ({
 
               <button
                 onClick={() => scrollToSection('h5-invitation')}
-                className="inline-flex flex-col items-center text-xs sm:text-sm text-white animate-bounce cursor-pointer hover:opacity-100 drop-shadow-md pt-2"
+                className="inline-flex flex-col items-center text-[11px] sm:text-sm text-white animate-bounce cursor-pointer hover:opacity-100 drop-shadow-md pt-1"
               >
-                <span className="tracking-[0.2em] font-medium font-chinese mb-1">
+                <span className="tracking-[0.12em] sm:tracking-[0.2em] font-medium font-chinese mb-1 px-2">
                   {lang === 'vi' ? 'Cuộn xuống để xem thiệp cưới' : (lang === 'en' ? 'Scroll Down' : '向下滚动 · 开启请柬')}
                 </span>
                 <ChevronDown className="w-5 h-5 text-white" />
@@ -426,7 +446,7 @@ export const HunbeiH5SlideContainer: React.FC<HunbeiH5SlideContainerProps> = ({
             </div>
 
             {/* Bottom Countdown & Scroll Down Prompt */}
-            <div className="relative z-10 text-center space-y-4 pb-12 sm:pb-16 max-w-md mx-auto w-full">
+            <div id="h5-cover-countdown" className="relative z-10 text-center space-y-3 sm:space-y-4 pb-2 sm:pb-4 max-w-md mx-auto w-full">
               <div className="grid grid-cols-4 gap-2 sm:gap-3 text-center">
                 <div className="bg-black/60 backdrop-blur-md rounded-xl p-2 sm:p-3 border border-white/20">
                   <div className="text-lg sm:text-2xl font-bold text-[#ffd778]">{timeLeft.days}</div>
@@ -1234,10 +1254,7 @@ export const HunbeiH5SlideContainer: React.FC<HunbeiH5SlideContainerProps> = ({
           </div>
 
           <div>
-            <h3 className="font-serif text-2xl sm:text-3xl text-[#f5ede4] tracking-wide font-normal">
-              {groomDisplayName} & {brideDisplayName}
-            </h3>
-            <p className="text-xs uppercase tracking-[0.2em] font-cinzel text-[#b49880] mt-1">
+            <p className="text-xs uppercase tracking-[0.2em] font-cinzel text-[#b49880]">
               {dateFormattedText} • {venueCityText}
             </p>
           </div>
@@ -1268,7 +1285,7 @@ export const HunbeiH5SlideContainer: React.FC<HunbeiH5SlideContainerProps> = ({
             </button>
           </div>
 
-          <div className="flex items-center justify-center gap-1.5 pt-2">
+          <div ref={langSwitchRef} className="grid grid-cols-3 gap-1.5 pt-2 w-[11.5rem] mx-auto">
             {([
               { id: 'vi' as const, label: 'VI' },
               { id: 'zh' as const, label: '中文' },
@@ -1277,8 +1294,8 @@ export const HunbeiH5SlideContainer: React.FC<HunbeiH5SlideContainerProps> = ({
               <button
                 key={opt.id}
                 type="button"
-                onClick={() => onChangeLang(opt.id)}
-                className={`min-w-11 px-3 py-1 rounded-full text-[11px] font-cinzel tracking-wider transition cursor-pointer ${
+                onClick={() => handleChangeLang(opt.id)}
+                className={`px-2 py-1 rounded-full text-[11px] font-cinzel tracking-wider transition cursor-pointer ${
                   lang === opt.id
                     ? 'bg-[#8a705a] text-[#f5ebd9] border border-[#c4a88f]'
                     : 'text-[#a8998d] border border-[#3d3229] hover:text-white hover:border-[#8a705a]'
@@ -1313,7 +1330,7 @@ export const HunbeiH5SlideContainer: React.FC<HunbeiH5SlideContainerProps> = ({
       </footer>
 
       {/* ================= FIXED BOTTOM ACTION BAR ================= */}
-      <div className="fixed bottom-0 left-0 right-0 z-40 bg-[#16120f]/95 backdrop-blur-md border-t border-[#47362a] py-2.5 px-4 text-white shadow-2xl">
+      <div className="fixed bottom-0 left-0 right-0 z-40 bg-[#16120f]/95 backdrop-blur-md border-t border-[#47362a] pt-2.5 pb-[max(0.625rem,env(safe-area-inset-bottom))] px-4 text-white shadow-2xl">
         <div className="max-w-xl mx-auto flex items-center justify-around text-xs">
           <button
             onClick={onOpenCallModal}
