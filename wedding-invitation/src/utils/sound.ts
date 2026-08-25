@@ -10,18 +10,18 @@ const musicUrl = (file: string) => `${import.meta.env.BASE_URL}music/${file}`;
 
 const TRACKS: AudioTrack[] = [
   {
-    id: 'vay-cuoi',
-    name: 'Vay Cuoi',
-    nameVi: 'Váy Cưới',
-    nameZh: 'Váy Cưới',
-    src: musicUrl('vay-cuoi.mp3'),
-  },
-  {
     id: 'perfect',
     name: 'Perfect',
     nameVi: 'Perfect',
     nameZh: 'Perfect',
     src: musicUrl('perfect.mp3'),
+  },
+  {
+    id: 'vay-cuoi',
+    name: 'Vay Cuoi',
+    nameVi: 'Váy Cưới',
+    nameZh: 'Váy Cưới',
+    src: musicUrl('vay-cuoi.mp3'),
   },
   {
     id: 'beautiful-in-white',

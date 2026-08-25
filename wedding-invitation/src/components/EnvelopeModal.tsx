@@ -419,6 +419,8 @@ export const EnvelopeModal: React.FC<EnvelopeModalProps> = ({
                           <option value={1}>{lang === 'vi' ? '1 người (Đi một mình)' : lang === 'zh' ? '1位宾客' : '1 guest (just me)'}</option>
                           <option value={2}>{lang === 'vi' ? '2 người (Đi cùng người thương/bạn)' : lang === 'zh' ? '2位宾客' : '2 guests (with a plus-one)'}</option>
                           <option value={3}>{lang === 'vi' ? '3 người (Gia đình nhỏ)' : lang === 'zh' ? '3位宾客' : '3 guests (small family)'}</option>
+                          <option value={4}>{lang === 'vi' ? '4 người (Gia đình)' : lang === 'zh' ? '4位宾客' : '4 guests (family)'}</option>
+                          <option value={5}>{lang === 'vi' ? '5 người (Đại gia đình)' : lang === 'zh' ? '5位宾客' : '5 guests (extended family)'}</option>
                         </select>
                         <Users className="w-4 h-4 text-[#9c8470] absolute left-3 top-3" />
                       </div>
