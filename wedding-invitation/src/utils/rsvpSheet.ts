@@ -7,8 +7,11 @@ export type RsvpSheetPayload = Pick<
   lang: LanguageMode;
 };
 
+const DEFAULT_RSVP_WEBAPP_URL =
+  'https://script.google.com/macros/s/AKfycbz_tsyEi-tItx-xVtjlD6hniMRsaUGbE6p_-59kKmwL9iOKB6YQGp85DpaCWVOX9cR3/exec';
+
 export async function submitRsvpToSheet(payload: RsvpSheetPayload): Promise<void> {
-  const url = import.meta.env.VITE_RSVP_WEBAPP_URL;
+  const url = (import.meta.env.VITE_RSVP_WEBAPP_URL || '').trim() || DEFAULT_RSVP_WEBAPP_URL;
   if (!url) {
     throw new Error('RSVP_WEBAPP_UNCONFIGURED');
   }

@@ -28,7 +28,10 @@ jobs:
 
       - name: Build wedding invitation
         env:
-          VITE_RSVP_WEBAPP_URL: ${{ secrets.VITE_RSVP_WEBAPP_URL }}
+          # Public Apps Script web app URL. Secret/var override if set.
+          # Build job does not use the github-pages environment, so
+          # environment-only secrets are invisible here.
+          VITE_RSVP_WEBAPP_URL: ${{ secrets.VITE_RSVP_WEBAPP_URL || vars.VITE_RSVP_WEBAPP_URL || 'https://script.google.com/macros/s/AKfycbz_tsyEi-tItx-xVtjlD6hniMRsaUGbE6p_-59kKmwL9iOKB6YQGp85DpaCWVOX9cR3/exec' }}
         run: |
           cd wedding-invitation
           npm install
