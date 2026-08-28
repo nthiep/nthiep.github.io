@@ -582,6 +582,15 @@ export const faqList: FAQItem[] = [
     answerVi: 'Có! Nhà hàng có dịch vụ hỗ trợ đỗ xe (xe máy và ô tô) dưới tầng hầm.',
   },
   {
+    id: 'faq-dresscode',
+    question: 'What is the dress code? Do I need to wear the suggested colors?',
+    questionZh: '着装要求是什么？必须穿请柬上的建议配色吗？',
+    questionVi: 'Dress Code là gì, tôi có cần mặc theo màu sắc gợi ý không?',
+    answer: 'No. The colors on the invite are only a suggestion for nicer photos together. You do not need to match them, and it will not affect the evening at all. Come in anything smart and comfortable.',
+    answerZh: '不必。请柬上的配色只是建议，方便合影更好看，并非着装要求，也不会影响晚宴。穿着得体、舒适即可。',
+    answerVi: 'Không ạ. Các tone màu trên thiệp chỉ là gợi ý để ảnh kỷ niệm đẹp hơn, quý khách không cần mặc đúng màu đó và cũng không ảnh hưởng gì đến buổi tiệc. Mặc trang phục lịch sự, thoải mái là được.',
+  },
+  {
     id: 'faq-8',
     question: 'Will there be karaoke or live performances during the party?',
     questionZh: '宴会上有卡拉OK或文艺互动吗？',
