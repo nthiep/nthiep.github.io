@@ -25,6 +25,14 @@ if [ -d "$DIST_DIR/music" ]; then
   cp -R "$DIST_DIR/music" "$APP_DIR/music"
 fi
 
+# Static .ics must be a real HTTP file (not a JS blob) so iOS Chrome
+# can offer Add to Calendar, matching apple.com/apple-events.
+shopt -s nullglob
+for ics in "$DIST_DIR"/*.ics; do
+  cp "$ics" "$APP_DIR/$(basename "$ics")"
+done
+shopt -u nullglob
+
 {
   printf '%s\n' '---' 'permalink: /wedding-invitation/' 'layout: null' '---'
   python3 - "$DIST_DIR/index.html" <<'PY'

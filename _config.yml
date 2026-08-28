@@ -129,6 +129,10 @@ compress_html:
         - development
         - stage
 
+webrick:
+  mime_types:
+    ics: text/calendar
+
 keep_files:
   - wedding-invitation
 

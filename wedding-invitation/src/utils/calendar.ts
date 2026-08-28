@@ -35,40 +35,5 @@ export function generateGoogleCalendarUrl(couple: CoupleInfo): string {
   )}&sf=true&output=xml`;
 }
 
-export function downloadIcsFile(couple: CoupleInfo) {
-  const { start, end } = getEventTimes(couple);
-  const { title, details, location } = getEventMeta(couple);
-
-  const icsContent = [
-    'BEGIN:VCALENDAR',
-    'VERSION:2.0',
-    'PRODID:-//Hiep and Dung Wedding//EN',
-    'CALSCALE:GREGORIAN',
-    'METHOD:PUBLISH',
-    'BEGIN:VEVENT',
-    `UID:wedding-${start}@hiep.vn`,
-    `DTSTAMP:${toIcsUtc(new Date())}`,
-    `DTSTART:${start}`,
-    `DTEND:${end}`,
-    `SUMMARY:${title}`,
-    `DESCRIPTION:${details.replace(/\n/g, '\\n')}`,
-    `LOCATION:${location.replace(/,/g, '\\,')}`,
-    'STATUS:CONFIRMED',
-    'SEQUENCE:0',
-    'BEGIN:VALARM',
-    'TRIGGER:-P1D',
-    'ACTION:DISPLAY',
-    'DESCRIPTION:Nhắc nhở: Lễ Báo Hỷ ngày mai!',
-    'END:VALARM',
-    'END:VEVENT',
-    'END:VCALENDAR',
-  ].join('\r\n');
-
-  const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
-  const link = document.createElement('a');
-  link.href = window.URL.createObjectURL(blob);
-  link.setAttribute('download', `Le-Bao-Hy-${couple.groomLastNameEn || 'Hiep'}-${couple.brideLastNameEn || 'Dung'}.ics`);
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-}
+/** Real HTTP .ics URL (Apple-style). Do not use blob + download on iOS Chrome. */
+export const ICS_FILE_URL = `${import.meta.env.BASE_URL}le-bao-hy.ics`;

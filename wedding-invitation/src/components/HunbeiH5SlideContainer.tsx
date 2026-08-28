@@ -43,7 +43,7 @@ import venueGoldPalaceImg from '../assets/images/venue_goldpalace.jpg';
 import venueDonKhachImg from '../assets/images/venue_don_khach.jpg';
 import coverImg from '../assets/images/cover.jpg';
 import coverBwImg from '../assets/images/cover_bw.jpg';
-import { generateGoogleCalendarUrl, downloadIcsFile } from '../utils/calendar';
+import { generateGoogleCalendarUrl, ICS_FILE_URL } from '../utils/calendar';
 import { useLockBodyScroll } from '../hooks/useLockBodyScroll';
 
 interface HunbeiH5SlideContainerProps {
@@ -546,13 +546,13 @@ export const HunbeiH5SlideContainer: React.FC<HunbeiH5SlideContainerProps> = ({
                   <Calendar className="w-4 h-4" />
                   <span>{lang === 'vi' ? 'Google Calendar' : (lang === 'en' ? 'Google Calendar' : '谷歌日历')}</span>
                 </a>
-                <button
-                  onClick={() => downloadIcsFile(couple)}
-                  className="w-full py-3 rounded-2xl bg-white/10 border border-[#ffd778]/50 text-[#fae0a5] text-xs sm:text-sm font-semibold tracking-wider hover:bg-white/15 active:scale-98 transition flex items-center justify-center space-x-2 cursor-pointer"
+                <a
+                  href={ICS_FILE_URL}
+                  className="w-full py-3 rounded-2xl bg-white/10 border border-[#ffd778]/50 text-[#fae0a5] text-xs sm:text-sm font-semibold tracking-wider hover:bg-white/15 active:scale-98 transition flex items-center justify-center space-x-2"
                 >
                   <Calendar className="w-4 h-4" />
                   <span>{lang === 'vi' ? 'Lịch Apple / Outlook' : (lang === 'en' ? 'Apple / Outlook (.ics)' : 'Apple / Outlook 日历')}</span>
-                </button>
+                </a>
               </div>
             </div>
           </div>

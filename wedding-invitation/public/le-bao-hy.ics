@@ -1,0 +1,33 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Hiep and Dung Wedding//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:Asia/Ho_Chi_Minh
+X-LIC-LOCATION:Asia/Ho_Chi_Minh
+BEGIN:STANDARD
+TZOFFSETFROM:+0700
+TZOFFSETTO:+0700
+TZNAME:ICT
+DTSTART:19700101T000000
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:wedding-20260912T183000@hiep.vn
+DTSTAMP:20260828T000000Z
+DTSTART;TZID=Asia/Ho_Chi_Minh:20260912T183000
+DTEND;TZID=Asia/Ho_Chi_Minh:20260912T213000
+SUMMARY:Lễ Báo Hỷ · Nguyễn Thanh Hiệp & Ngô Thị Thùy Dung
+DESCRIPTION:Trân trọng kính mời quý khách đến chung vui trong ngày Lễ Báo Hỷ của Nguyễn Thanh Hiệp & Ngô Thị Thùy Dung tại Nhà hàng Gold Palace - Sảnh IMPERIAL - Tầng 5A.\n\nĐịa chỉ: 329 Nơ Trang Long\, P. Bình Lợi Trung\, TP. Hồ Chí Minh
+LOCATION:Nhà hàng Gold Palace - Sảnh IMPERIAL - Tầng 5A\, 329 Nơ Trang Long\, P. Bình Lợi Trung\, TP. Hồ Chí Minh
+URL:https://hiep.vn/wedding-invitation/
+STATUS:CONFIRMED
+SEQUENCE:0
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Nhắc nhở: Lễ Báo Hỷ ngày mai!
+END:VALARM
+END:VEVENT
+END:VCALENDAR
