@@ -137,6 +137,17 @@ export interface GalleryPhoto {
   category: 'all' | 'engagement' | 'travel' | 'moments';
 }
 
+export interface GalleryVideo {
+  id: string;
+  youtubeId: string;
+  title: string;
+  titleVi?: string;
+  titleZh?: string;
+  caption: string;
+  captionVi?: string;
+  captionZh?: string;
+}
+
 export interface FAQItem {
   id: string;
   question: string;

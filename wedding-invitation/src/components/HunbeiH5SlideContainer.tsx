@@ -26,6 +26,7 @@ import {
   X,
   Maximize2,
   Sun,
+  Play,
 } from 'lucide-react';
 import {
   CoupleInfo,
@@ -36,6 +37,7 @@ import {
   HunbeiTheme,
   LanguageMode,
   FAQItem,
+  GalleryVideo,
 } from '../types';
 import { AppleLogo } from './AppleLogo';
 import venueHallImg from '../assets/images/venue_sanh_imperial.jpg';
@@ -51,6 +53,7 @@ interface HunbeiH5SlideContainerProps {
   milestones: StoryMilestone[];
   events: ScheduleEvent[];
   gallery: GalleryPhoto[];
+  videos?: GalleryVideo[];
   dressColors: ColorSwatch[];
   faqs: FAQItem[];
   themeStyle: HunbeiTheme;
@@ -68,6 +71,7 @@ export const HunbeiH5SlideContainer: React.FC<HunbeiH5SlideContainerProps> = ({
   milestones,
   events,
   gallery,
+  videos = [],
   dressColors,
   faqs,
   themeStyle,
@@ -80,6 +84,7 @@ export const HunbeiH5SlideContainer: React.FC<HunbeiH5SlideContainerProps> = ({
 }) => {
   const [copiedAddr, setCopiedAddr] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [playingVideoId, setPlayingVideoId] = useState<string | null>(null);
   const [couplePortrait, setCouplePortrait] = useState<'groom' | 'bride' | null>(null);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
   const [venueSlideIndex, setVenueSlideIndex] = useState(0);
@@ -140,33 +145,41 @@ export const HunbeiH5SlideContainer: React.FC<HunbeiH5SlideContainerProps> = ({
     }
   }, [lang]);
 
-  // Countdown timer calculation
-  const [timeLeft, setTimeLeft] = useState<{ days: number; hours: number; minutes: number; seconds: number }>({
+  const [anniversary, setAnniversary] = useState<{ years: number; months: number; days: number }>({
+    years: 0,
+    months: 0,
     days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
   });
 
   useEffect(() => {
-    const calculateTime = () => {
-      const weddingTime = new Date(couple.weddingDate).getTime();
-      const now = new Date().getTime();
-      const diff = weddingTime - now;
+    const calculateAnniversary = () => {
+      const wedding = new Date(couple.weddingDate);
+      const from = new Date(wedding.getFullYear(), wedding.getMonth(), wedding.getDate());
+      const now = new Date();
+      const to = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
-      if (diff <= 0) {
-        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-      } else {
-        setTimeLeft({
-          days: Math.floor(diff / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
-          minutes: Math.floor((diff / 1000 / 60) % 60),
-          seconds: Math.floor((diff / 1000) % 60),
-        });
+      if (to < from) {
+        setAnniversary({ years: 0, months: 0, days: 0 });
+        return;
       }
+
+      let years = to.getFullYear() - from.getFullYear();
+      let months = to.getMonth() - from.getMonth();
+      let days = to.getDate() - from.getDate();
+
+      if (days < 0) {
+        months -= 1;
+        days += new Date(to.getFullYear(), to.getMonth(), 0).getDate();
+      }
+      if (months < 0) {
+        years -= 1;
+        months += 12;
+      }
+
+      setAnniversary({ years, months, days });
     };
-    calculateTime();
-    const timer = setInterval(calculateTime, 1000);
+    calculateAnniversary();
+    const timer = setInterval(calculateAnniversary, 60_000);
     return () => clearInterval(timer);
   }, [couple.weddingDate]);
 
@@ -376,24 +389,23 @@ export const HunbeiH5SlideContainer: React.FC<HunbeiH5SlideContainerProps> = ({
               </div>
             </div>
 
-            {/* Bottom Countdown & Scroll Down Prompt */}
-            <div id="h5-cover-countdown" className="relative z-10 text-center space-y-3 sm:space-y-4 pb-0 max-w-md mx-auto w-full">
-              <div className="grid grid-cols-4 gap-2 sm:gap-3 text-center">
+            {/* Bottom Anniversary & Scroll Down Prompt */}
+            <div id="h5-cover-anniversary" className="relative z-10 text-center space-y-3 sm:space-y-4 pb-0 max-w-md mx-auto w-full">
+              <p className="text-[11px] sm:text-xs tracking-[0.28em] uppercase text-white/80 font-chinese">
+                {lang === 'vi' ? 'Kỷ niệm' : (lang === 'en' ? 'Anniversary' : '纪念日')}
+              </p>
+              <div className="grid grid-cols-3 gap-2 sm:gap-3 text-center">
                 <div className="bg-black/60 backdrop-blur-md rounded-xl p-2 sm:p-3 border border-white/20">
-                  <div className="text-base sm:text-xl font-bold text-white">{timeLeft.days}</div>
+                  <div className="text-base sm:text-xl font-bold text-white">{anniversary.years}</div>
+                  <div className="text-[10px] sm:text-xs text-white/70">{lang === 'vi' ? 'Năm' : (lang === 'en' ? 'Years' : '年')}</div>
+                </div>
+                <div className="bg-black/60 backdrop-blur-md rounded-xl p-2 sm:p-3 border border-white/20">
+                  <div className="text-base sm:text-xl font-bold text-white">{anniversary.months}</div>
+                  <div className="text-[10px] sm:text-xs text-white/70">{lang === 'vi' ? 'Tháng' : (lang === 'en' ? 'Months' : '月')}</div>
+                </div>
+                <div className="bg-black/60 backdrop-blur-md rounded-xl p-2 sm:p-3 border border-white/20">
+                  <div className="text-base sm:text-xl font-bold text-white">{anniversary.days}</div>
                   <div className="text-[10px] sm:text-xs text-white/70">{lang === 'vi' ? 'Ngày' : (lang === 'en' ? 'Days' : '天')}</div>
-                </div>
-                <div className="bg-black/60 backdrop-blur-md rounded-xl p-2 sm:p-3 border border-white/20">
-                  <div className="text-base sm:text-xl font-bold text-white">{timeLeft.hours}</div>
-                  <div className="text-[10px] sm:text-xs text-white/70">{lang === 'vi' ? 'Giờ' : (lang === 'en' ? 'Hours' : '时')}</div>
-                </div>
-                <div className="bg-black/60 backdrop-blur-md rounded-xl p-2 sm:p-3 border border-white/20">
-                  <div className="text-base sm:text-xl font-bold text-white">{timeLeft.minutes}</div>
-                  <div className="text-[10px] sm:text-xs text-white/70">{lang === 'vi' ? 'Phút' : (lang === 'en' ? 'Mins' : '分')}</div>
-                </div>
-                <div className="bg-black/60 backdrop-blur-md rounded-xl p-2 sm:p-3 border border-white/20">
-                  <div className="text-base sm:text-xl font-bold text-white">{timeLeft.seconds}</div>
-                  <div className="text-[10px] sm:text-xs text-white/70">{lang === 'vi' ? 'Giây' : (lang === 'en' ? 'Secs' : '秒')}</div>
                 </div>
               </div>
 
@@ -445,24 +457,23 @@ export const HunbeiH5SlideContainer: React.FC<HunbeiH5SlideContainerProps> = ({
               </div>
             </div>
 
-            {/* Bottom Countdown & Scroll Down Prompt */}
-            <div id="h5-cover-countdown" className="relative z-10 text-center space-y-3 sm:space-y-4 pb-0 max-w-md mx-auto w-full">
-              <div className="grid grid-cols-4 gap-2 sm:gap-3 text-center">
+            {/* Bottom Anniversary & Scroll Down Prompt */}
+            <div id="h5-cover-anniversary" className="relative z-10 text-center space-y-3 sm:space-y-4 pb-0 max-w-md mx-auto w-full">
+              <p className="text-[11px] sm:text-xs tracking-[0.28em] uppercase text-[#fae0a5] font-chinese">
+                {lang === 'vi' ? 'Kỷ niệm' : (lang === 'en' ? 'Anniversary' : '纪念日')}
+              </p>
+              <div className="grid grid-cols-3 gap-2 sm:gap-3 text-center">
                 <div className="bg-black/60 backdrop-blur-md rounded-xl p-2 sm:p-3 border border-white/20">
-                  <div className="text-lg sm:text-2xl font-bold text-[#ffd778]">{timeLeft.days}</div>
+                  <div className="text-lg sm:text-2xl font-bold text-[#ffd778]">{anniversary.years}</div>
+                  <div className="text-[10px] sm:text-xs text-white/70">{lang === 'vi' ? 'Năm' : (lang === 'en' ? 'Years' : '年')}</div>
+                </div>
+                <div className="bg-black/60 backdrop-blur-md rounded-xl p-2 sm:p-3 border border-white/20">
+                  <div className="text-lg sm:text-2xl font-bold text-[#ffd778]">{anniversary.months}</div>
+                  <div className="text-[10px] sm:text-xs text-white/70">{lang === 'vi' ? 'Tháng' : (lang === 'en' ? 'Months' : '月')}</div>
+                </div>
+                <div className="bg-black/60 backdrop-blur-md rounded-xl p-2 sm:p-3 border border-white/20">
+                  <div className="text-lg sm:text-2xl font-bold text-[#ffd778]">{anniversary.days}</div>
                   <div className="text-[10px] sm:text-xs text-white/70">{lang === 'vi' ? 'Ngày' : (lang === 'en' ? 'Days' : '天')}</div>
-                </div>
-                <div className="bg-black/60 backdrop-blur-md rounded-xl p-2 sm:p-3 border border-white/20">
-                  <div className="text-lg sm:text-2xl font-bold text-[#ffd778]">{timeLeft.hours}</div>
-                  <div className="text-[10px] sm:text-xs text-white/70">{lang === 'vi' ? 'Giờ' : (lang === 'en' ? 'Hours' : '时')}</div>
-                </div>
-                <div className="bg-black/60 backdrop-blur-md rounded-xl p-2 sm:p-3 border border-white/20">
-                  <div className="text-lg sm:text-2xl font-bold text-[#ffd778]">{timeLeft.minutes}</div>
-                  <div className="text-[10px] sm:text-xs text-white/70">{lang === 'vi' ? 'Phút' : (lang === 'en' ? 'Mins' : '分')}</div>
-                </div>
-                <div className="bg-black/60 backdrop-blur-md rounded-xl p-2 sm:p-3 border border-white/20">
-                  <div className="text-lg sm:text-2xl font-bold text-[#ffd778]">{timeLeft.seconds}</div>
-                  <div className="text-[10px] sm:text-xs text-white/70">{lang === 'vi' ? 'Giây' : (lang === 'en' ? 'Secs' : '秒')}</div>
                 </div>
               </div>
 
@@ -965,6 +976,65 @@ export const HunbeiH5SlideContainer: React.FC<HunbeiH5SlideContainerProps> = ({
               );
             })}
           </div>
+
+          {videos.length > 0 && (
+            <div className={`grid gap-5 ${videos.length === 1 ? 'grid-cols-1' : 'grid-cols-1 lg:grid-cols-2'}`}>
+              {videos.map((video) => {
+                const title = lang === 'vi' ? video.titleVi || video.title : lang === 'zh' ? video.titleZh || video.title : video.title;
+                const caption = lang === 'vi' ? video.captionVi || video.caption : lang === 'zh' ? video.captionZh || video.caption : video.caption;
+                const isPlaying = playingVideoId === video.id;
+                return (
+                  <div key={video.id} className="space-y-3">
+                    <div className="relative overflow-hidden rounded-2xl border border-white/20 shadow-xl aspect-video bg-black">
+                      {isPlaying ? (
+                        <iframe
+                          src={`https://www.youtube.com/embed/${video.youtubeId}?autoplay=1&rel=0&modestbranding=1`}
+                          title={title}
+                          className="absolute inset-0 h-full w-full"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          allowFullScreen
+                          referrerPolicy="strict-origin-when-cross-origin"
+                        />
+                      ) : (
+                        <button
+                          type="button"
+                          onClick={() => setPlayingVideoId(video.id)}
+                          className="group absolute inset-0 cursor-pointer text-left"
+                          aria-label={lang === 'vi' ? `Phát ${title}` : lang === 'zh' ? `播放${title}` : `Play ${title}`}
+                        >
+                          <img
+                            src={`https://i.ytimg.com/vi/${video.youtubeId}/maxresdefault.jpg`}
+                            alt={title}
+                            className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                          <div className="absolute inset-0 bg-black/35 group-hover:bg-black/25 transition-colors" />
+                          <span className="absolute inset-0 flex items-center justify-center">
+                            <span className="flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center rounded-full bg-[#ffd778] text-[#331c00] shadow-xl group-hover:scale-110 transition-transform">
+                              <Play className="w-7 h-7 sm:w-8 sm:h-8 fill-current ml-1" />
+                            </span>
+                          </span>
+                        </button>
+                      )}
+                    </div>
+                    <div className="px-1 flex items-start justify-between gap-3">
+                      <div>
+                        <h4 className="font-serif text-lg sm:text-xl font-medium text-white">{title}</h4>
+                        <p className="text-xs sm:text-sm text-white/75 mt-0.5">{caption}</p>
+                      </div>
+                      <a
+                        href={`https://www.youtube.com/watch?v=${video.youtubeId}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="shrink-0 text-[11px] sm:text-xs text-[#fae0a5] hover:text-white underline-offset-2 hover:underline pt-1"
+                      >
+                        {lang === 'vi' ? 'YouTube' : lang === 'zh' ? 'YouTube' : 'YouTube'}
+                      </a>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
         </div>
 
         {lightboxIndex !== null && gallery[lightboxIndex] && (

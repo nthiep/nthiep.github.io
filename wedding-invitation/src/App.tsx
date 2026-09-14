@@ -6,6 +6,7 @@ import {
   scheduleEvents,
   dressCodeColors,
   galleryPhotos,
+  galleryVideos,
   faqList,
 } from './data/weddingData';
 import { EnvelopeModal } from './components/EnvelopeModal';
@@ -15,6 +16,7 @@ import { HunbeiRedPacketModal } from './components/HunbeiRedPacketModal';
 import { HunbeiH5SlideContainer } from './components/HunbeiH5SlideContainer';
 import { HunbeiCallModal } from './components/HunbeiCallModal';
 import { HunbeiNavModal } from './components/HunbeiNavModal';
+import { HunbeiThankYouModal } from './components/HunbeiThankYouModal';
 import { useLockBodyScroll } from './hooks/useLockBodyScroll';
 
 export default function App() {
@@ -27,8 +29,9 @@ export default function App() {
   const [redPacketOpen, setRedPacketOpen] = useState(false);
   const [callModalOpen, setCallModalOpen] = useState(false);
   const [navModalOpen, setNavModalOpen] = useState(false);
+  const [thankYouOpen, setThankYouOpen] = useState(true);
 
-  useLockBodyScroll(envelopeOpen || redPacketOpen || callModalOpen || navModalOpen);
+  useLockBodyScroll(envelopeOpen || redPacketOpen || callModalOpen || navModalOpen || thankYouOpen);
 
   return (
     <div className="min-h-screen relative font-sans selection:bg-[#f3c87a] selection:text-[#5e090b] bg-[#18231c] text-[#f0f7f0]">
@@ -39,6 +42,7 @@ export default function App() {
         milestones={storyMilestones}
         events={scheduleEvents}
         gallery={galleryPhotos}
+        videos={galleryVideos}
         dressColors={dressCodeColors}
         faqs={faqList}
         themeStyle={themeStyle}
@@ -76,6 +80,13 @@ export default function App() {
       <EnvelopeModal
         isOpen={envelopeOpen}
         onClose={() => setEnvelopeOpen(false)}
+        couple={couple}
+        lang={lang}
+      />
+
+      <HunbeiThankYouModal
+        isOpen={thankYouOpen}
+        onClose={() => setThankYouOpen(false)}
         couple={couple}
         lang={lang}
       />

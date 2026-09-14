@@ -132,6 +132,30 @@
   animation: bounce-up 1.8s ease-in-out infinite;
 }
 
+@keyframes thanks-heart-fly {
+  0% {
+    transform: translate(-50%, 0) scale(0.35) rotate(0deg);
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(calc(-50% + var(--dx)), -220px) scale(1.15) rotate(var(--rot));
+    opacity: 0;
+  }
+}
+
+.thanks-heart {
+  position: absolute;
+  left: 50%;
+  bottom: 1.75rem;
+  pointer-events: none;
+  color: #ffd778;
+  animation: thanks-heart-fly 0.95s ease-out forwards;
+  text-shadow: 0 0 10px rgba(255, 215, 120, 0.55);
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 6px;

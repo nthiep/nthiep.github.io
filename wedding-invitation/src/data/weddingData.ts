@@ -6,6 +6,7 @@ import {
   FAQItem,
   ColorSwatch,
   RedPacketGift,
+  GalleryVideo,
 } from '../types';
 import groomPortraitImg from '../assets/images/groom_nam0112.jpg';
 import bridePortraitImg from '../assets/images/bride_nam0638.jpg';
@@ -535,6 +536,19 @@ export const galleryPhotos: GalleryPhoto[] = [
     location: 'Xe Hoa',
     locationVi: 'Xe Hoa',
     locationZh: '花车',
+  },
+];
+
+export const galleryVideos: GalleryVideo[] = [
+  {
+    id: 'v-slideshow',
+    youtubeId: '4NYb0Q-H0ME',
+    title: 'Wedding Slideshow',
+    titleVi: 'Wedding Slideshow',
+    titleZh: '婚礼幻灯片',
+    caption: 'Hiep & Dung — a film of our favorite wedding moments.',
+    captionVi: 'Hiệp & Dung — những khoảnh khắc đẹp nhất trong ngày lễ của chúng mình.',
+    captionZh: '协与蓉 — 婚礼当天最美的瞬间。',
   },
 ];
 
